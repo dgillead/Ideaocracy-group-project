@@ -1,0 +1,28 @@
+#title {
+  font-family: 'Maven Pro', sans-serif;
+  color: black;
+}
+
+#tagline {
+  font-family: 'Lobster Two', cursive;
+  font-size: 25px;
+  line-height: 45px;
+  color: black;
+}
+
+#background {
+  background-image: url('/images/lightbulb.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.intro-buttons {
+  margin: 5px;
+}
+
+#intro-container {
+   background: rgb(200, 54, 54);
+   background: rgba(192, 192, 192, 0.8);
+}
