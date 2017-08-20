@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration[5.1]
       t.integer :idea_id
       t.integer :suggestion_id
       t.text :body, null: false
-      t.datetime :date_posted, null: false
       t.timestamps
     end
   end
