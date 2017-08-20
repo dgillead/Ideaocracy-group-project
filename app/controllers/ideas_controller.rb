@@ -19,6 +19,7 @@ class IdeasController < HomeController
   end
 
   def show
+    @suggestions = @idea.suggestions.all
   end
 
   private
