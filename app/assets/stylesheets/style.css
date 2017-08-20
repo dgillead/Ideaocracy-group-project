@@ -18,11 +18,15 @@
   background-size: cover;
 }
 
-.intro-buttons {
-  margin: 5px;
+#intro-container {
+  background: rgb(200, 54, 54);
+  background: rgba(192, 192, 192, 0.8);
 }
 
-#intro-container {
-   background: rgb(200, 54, 54);
-   background: rgba(192, 192, 192, 0.8);
+#idea-container {
+  width: 60%;
+}
+
+.intro-buttons {
+  margin: 5px;
 }
