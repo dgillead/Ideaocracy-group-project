@@ -14,7 +14,7 @@ RSpec.describe IdeaController, type: :controller do
 
       get :new, params: { user_id: user.to_param }
 
-      expect(assigns(:idea).to be_a_new(Idea))
+      expect(assigns(:idea)).to be_a_new(Idea)
     end
   end
 
