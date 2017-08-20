@@ -3,7 +3,7 @@
 end 
 
 User.all.each do |user|
-  user.ideas.create!(title: Faker::Hipster.sentence, summary: Faker::Hipster.paragraphs[0])
+  user.ideas.create!(title: Faker::Hipster.sentence, summary: "#{Faker::Hipster.paragraphs[0]}#{Faker::Hipster.paragraphs[0]}")
 end
 
 # Idea.all.each do |idea|
