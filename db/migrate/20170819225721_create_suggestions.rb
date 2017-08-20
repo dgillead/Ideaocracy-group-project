@@ -5,7 +5,6 @@ class CreateSuggestions < ActiveRecord::Migration[5.1]
       t.integer :votes, default: 1
       t.text :approved, default: 'false'
       t.text :body, null: false
-      t.datetime :date_posted, null: false
       t.timestamps
     end
   end
