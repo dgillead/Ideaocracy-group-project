@@ -1,25 +1,3 @@
-# README
+# Ideaocracy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Ideaocracy-group-project
+[ ![Codeship Status for dgillead/Ideaocracy-group-project](https://app.codeship.com/projects/a23519b0-6807-0135-ef0f-0ed54c158a94/status?branch=master)](https://app.codeship.com/projects/241165)
