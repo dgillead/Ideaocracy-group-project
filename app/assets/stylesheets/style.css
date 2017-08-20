@@ -27,6 +27,12 @@
   width: 60%;
 }
 
+#lightbulb-icon {
+  margin-top: 12px;
+  font-size: 25px;
+  color: yellow;
+}
+
 .intro-buttons {
   margin: 5px;
 }

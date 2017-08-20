@@ -3,6 +3,7 @@
   <head>
     <title>Ideaocracy</title>
     <%= csrf_meta_tags %>
+    <script src="https://use.fontawesome.com/17273112b9.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
@@ -11,8 +12,11 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse bg-inverse">
-      <a class="navbar-brand" href="#">Ideaocracy</a>
+    <nav class="nav navbar-inverse bg-inverse">
+      <a class="navbar-brand" href="/">Ideaocracy</a>
+      <% if current_user %>
+        <a href="/ideas/new"><i id="lightbulb-icon" class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
+      <% end %>
     </nav>
     <%= yield %>
   </body>
