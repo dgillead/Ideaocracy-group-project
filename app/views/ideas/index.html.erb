@@ -1,8 +1,10 @@
 <h1 class="text-center">Ideas</h1>
 <% if @ideas.any? %>
-  <% @ideas.each do |idea| %>
-    <p><%= link_to idea.title, idea_path(idea.id) %> <%= idea.created_at.strftime('%y-%m-%d %H:%m') %></p>
-    <p><%= idea.summary %></p> 
+  <% @ideas.each_with_index do |idea, index| %>
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><%= idea.title %> <%= idea.created_at.strftime('%y-%m-%d %H:%m') %></div>
+      <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><%= idea.summary %></p></div>
+    </div>
   <% end %>
 <% else %>
   Nothing yet
