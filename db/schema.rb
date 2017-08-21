@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170819230543) do
 
   create_table "suggestions", force: :cascade do |t|
     t.integer "idea_id"
+    t.integer "user_id"
     t.integer "votes", default: 1
     t.text "approved", default: "false"
     t.text "body", null: false

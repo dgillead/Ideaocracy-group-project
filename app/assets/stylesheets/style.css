@@ -33,6 +33,10 @@
   color: yellow;
 }
 
+#suggestion-box {
+  width: 60%;
+}
+
 .intro-buttons {
   margin: 5px;
 }

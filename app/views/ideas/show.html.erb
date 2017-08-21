@@ -2,3 +2,20 @@
   <h1 class="text-center"><%= @idea.title %></h1>
   <p><%= @idea.summary %></p>
 </div>
+
+<div id="suggestion-box" class="center-block">
+  <% @suggestions.each do |suggestion| %>
+    <hr>
+    <p><%= suggestion.body %></p>
+  <% end %>
+  <hr>
+  <form action="/suggestions" method="post">
+    <div class="form-group">
+      <label for="Textarea">Have a good suggestion?</label>
+      <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
+      <input type="hidden" name="idea_id" value="<%= @idea.id %>">
+      <%= button_to 'Post your suggestion',new_suggestion_path, class:"btn btn-primary" %>
+    </div>
+  </form>
+
+</div>
