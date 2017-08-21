@@ -5,7 +5,7 @@
     <%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe %>
     <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe  %>
     <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
-    <p class="text-right"><%= suggestion.created_at.strftime('%m-%y-%d at %H:%m') %></p>
+    <p class="text-right"><%= local_time(suggestion.created_at) %></p>
   </p>
   <span><%= suggestion.body %> </span>
 </div>
