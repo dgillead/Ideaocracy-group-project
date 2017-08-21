@@ -43,6 +43,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
   gem 'pry'
+  gem 'capybara'
 end
 
 group :development do
