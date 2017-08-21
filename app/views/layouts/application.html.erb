@@ -15,9 +15,16 @@
     <nav class="navbar navbar-inverse bg-inverse">
       <a class="navbar-brand" href="/">Ideaocracy</a>
       <% if current_user %>
+      <p>Hello, <%= current_user.first_name %>!
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "pull-right" %>
         <a href="/ideas/new"><i id="lightbulb-icon" class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
+      <% else %>
+        <%= link_to 'Register', new_user_registration_path, class: "pull-right" %>
+        <%= link_to 'Login', new_user_session_path, class: "pull-right" %>
       <% end %>
     </nav>
     <%= yield %>
   </body>
 </html>
+      
+        
