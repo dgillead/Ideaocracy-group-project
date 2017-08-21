@@ -37,6 +37,15 @@
   width: 60%;
 }
 
+#suggestion-body {
+  word-wrap: break-word;
+}
+
 .intro-buttons {
   margin: 5px;
+}
+
+.suggestion-icon {
+  font-size: 18px;
+  margin-left: 5px;
 }
