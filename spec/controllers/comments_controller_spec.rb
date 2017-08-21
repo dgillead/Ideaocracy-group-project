@@ -18,6 +18,12 @@ RSpec.describe CommentsController, type: :controller do
 
       expect{ post :create, params: { idea_id: idea1.id, suggestion_id: suggestion.id, user_id: user.id, body: 'Comment test body' } }.to change{ suggestion.comments.count }.by(1)
     end
+
+    it 'redirects the user if they are not signed in' do
+      post :create, params: { idea_id: idea1.id, suggestion_id: suggestion.id, user_id: user.id, body: 'Comment test body' }
+
+      expect(response.code).to eq('302')
+    end
   end
 
 
