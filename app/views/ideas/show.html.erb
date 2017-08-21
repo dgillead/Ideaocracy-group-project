@@ -4,13 +4,35 @@
   <p class="text-right"><%= link_to 'Edit ', edit_idea_path(@idea) %>|<%= link_to ' Delete', @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
 </div>
 <div id="suggestion-box" class="center-block">
-  <% @suggestions.each do |suggestion| %>
+  <% @suggestions.each_with_index do |suggestion, index| %>
     <hr>
+
     <p class="pull-right"> <%= suggestion.votes %> </p>
     <br>
-    <p class='text-right'><%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe %>   <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe  %>    <%= link_to '<i class="suggestion-icon fa fa-commenting-o" aria-hidden="true"></i> '.html_safe %>
+    <p class='text-right'>
+      <%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe %>
+      <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe  %>    
+      <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
     </p>
     <span id="suggestion-body"><%= suggestion.body %> </span>
+    <hr>
+      <% suggestion.comments.all.each do |comment| %>
+        <%= comment.body %>
+        <%= comment.created_at.strftime('%y-%m-%d %H:%m') %>
+        <br>
+      <% end %>
+    <div class="collapse" id="comment-box<%= index %>" aria-hidden="false">
+      <form action="/comments" method="post">
+        <div class="form-group">
+          <label for="Textarea">Leave a comment</label>
+          <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
+          <input type="hidden" name="suggestion_id" value="<%= suggestion.id %>">
+          <input type="hidden" name="idea_id" value="<%= @idea.id %>">
+          <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary" %>
+        </div>
+      </form>
+    </div>
+
   <% end %>
   <hr>
   <form action="/suggestions" method="post">
