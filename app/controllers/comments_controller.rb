@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
   before_action :authenticate_user!
   before_action :find_suggestion, only: [:create]
   before_action :find_idea, only: [:create]

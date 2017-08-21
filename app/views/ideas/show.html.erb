@@ -15,7 +15,12 @@
       <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
     </p>
     <span id="suggestion-body"><%= suggestion.body %> </span>
-
+    <hr>
+      <% suggestion.comments.all.each do |comment| %>
+        <%= comment.body %>
+        <%= comment.created_at.strftime('%y-%m-%d %H:%m') %>
+        <br>
+      <% end %>
     <div class="collapse" id="comment-box<%= index %>" aria-hidden="false">
       <form action="/comments" method="post">
         <div class="form-group">
