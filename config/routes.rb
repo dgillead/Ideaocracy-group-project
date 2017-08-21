@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :comments
 
   patch '/upvote', to: 'suggestions#up_vote', as: 'up_vote_path'
+  patch '/downvote', to: 'suggestions#down_vote', as: 'down_vote_path'
 end

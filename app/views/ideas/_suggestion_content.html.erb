@@ -3,7 +3,7 @@
   <br>
   <p class='text-right'>
     <%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe, up_vote_path_url(suggestion_id: suggestion.id), method: :patch %>
-    <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe  %>
+    <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe, down_vote_path_url(suggestion_id: suggestion.id), method: :patch  %>
     <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
     <p class="text-right"><%= local_time(suggestion.created_at) %></p>
   </p>

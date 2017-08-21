@@ -17,7 +17,20 @@ class SuggestionsController < ApplicationController
       new_votes = @suggestion.votes
     else
       new_votes = @suggestion.votes + 1
+      @suggestion.down_votes.delete(current_user.id)
       @suggestion.up_votes.push(current_user.id)
+    end
+    @suggestion.update_attributes(votes: new_votes)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def down_vote
+    if @suggestion.down_votes.include?(current_user.id)
+      new_votes = @suggestion.votes
+    else
+      new_votes = @suggestion.votes - 1
+      @suggestion.up_votes.delete(current_user.id)
+      @suggestion.down_votes.push(current_user.id)
     end
     @suggestion.update_attributes(votes: new_votes)
     redirect_back(fallback_location: root_path)
