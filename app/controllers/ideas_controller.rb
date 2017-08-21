@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :find_idea, only: [:show, :edit, :update]
+  before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
   def new
     @idea = Idea.new
@@ -29,6 +29,11 @@ class IdeasController < HomeController
     if @idea.update_attributes(idea_params)
       redirect_to @idea
     end
+  end
+
+  def destroy
+    @idea.destroy
+    redirect_to ideas_path
   end
 
   private
