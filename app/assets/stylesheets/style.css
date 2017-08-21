@@ -27,6 +27,10 @@
   width: 60%;
 }
 
+#login-container {
+  width: 60%;
+}
+
 #lightbulb-icon {
   margin-top: 12px;
   font-size: 25px;
@@ -58,4 +62,7 @@
   font-size: 18px;
   margin-left: 5px;
 }
+
+
+
 
