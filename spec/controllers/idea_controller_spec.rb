@@ -11,9 +11,9 @@ RSpec.describe IdeasController, type: :controller do
 
   let!(:valid_idea_attributes) { { title: 'Test idea title', summary: 'Test idea summary' } }
 
-  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id)}
+  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
 
-  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user.id)}
+  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user.id) }
 
   describe 'GET #new' do
     it 'creates a new idea and assigns it to @idea' do

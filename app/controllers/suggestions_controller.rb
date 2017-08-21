@@ -1,5 +1,6 @@
 class SuggestionsController < ApplicationController
   before_action :find_idea, only: [:create]
+
   def create
     @suggestion = @idea.suggestions.new(suggestion_params)
     @suggestion['user_id'] = current_user.id
