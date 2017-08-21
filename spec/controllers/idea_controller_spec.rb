@@ -54,5 +54,30 @@ RSpec.describe IdeasController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    it 'updates the idea with the new parameters' do
+      sign_in(user)
+      update_idea_attributes = {title: 'Idea update', summary: 'Summary update'}
+
+      put :update, params: { idea: update_idea_attributes, id: idea1.id }
+      idea1.reload
+
+      expect(idea1.title).to eq('Idea update')
+      expect(idea1.summary).to eq('Summary update')
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'renders a form for the user to edit the idea' do
+      sign_in(user)
+
+      get :edit, params: { id: idea1.id }
+
+      expect(response.body).to include('Idea1 title')
+      expect(response.body).to include('Idea1 summary')
+      expect(response.body).to include('Edit Idea')
+    end
+  end
+
   DatabaseCleaner.clean
 end
