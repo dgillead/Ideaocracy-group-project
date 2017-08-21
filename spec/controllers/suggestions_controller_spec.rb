@@ -47,6 +47,12 @@ RSpec.describe SuggestionsController, type: :controller do
 
       expect(suggestion.votes).to eq(2)
     end
+
+    it 'redirects the user if they are not signed in' do
+      patch :up_vote, params: { suggestion_id: suggestion.id }
+
+      expect(response.code).to eq('302')
+    end
   end
 
   describe 'PATCH #down_vote' do
@@ -67,6 +73,12 @@ RSpec.describe SuggestionsController, type: :controller do
       suggestion.reload
 
       expect(suggestion.votes).to eq(0)
+    end
+
+    it 'redirects the user if they are not signed in' do
+      patch :down_vote, params: { suggestion_id: suggestion.id }
+
+      expect(response.code).to eq('302')
     end
   end
 
