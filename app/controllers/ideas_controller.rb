@@ -20,7 +20,8 @@ class IdeasController < HomeController
   end
 
   def show
-    @suggestions = @idea.suggestions.all
+    @suggestions = @idea.suggestions.all.order(votes: :desc)
+    @user = current_user
   end
 
   def edit
