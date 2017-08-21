@@ -2,16 +2,14 @@
   <h1 class="text-center"><%= @idea.title %></h1>
   <p><%= @idea.summary %></p>
 </div>
-
 <div id="suggestion-box" class="center-block">
   <% @suggestions.each do |suggestion| %>
     <hr>
-            <p class="pull-right"> <%= suggestion.votes %> </p>
-            <br>
+    <p class="pull-right"> <%= suggestion.votes %> </p>
+    <br>
     <p class='text-right'><%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe %>   <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe  %>    <%= link_to '<i class="suggestion-icon fa fa-commenting-o" aria-hidden="true"></i> '.html_safe %>
     </p>
-            <span id="suggestion-body"><%= suggestion.body %> </span>
-    
+    <span id="suggestion-body"><%= suggestion.body %> </span>
   <% end %>
   <hr>
   <form action="/suggestions" method="post">
@@ -22,5 +20,4 @@
       <%= button_to 'Post your suggestion',new_suggestion_path, class:"btn btn-primary" %>
     </div>
   </form>
-
 </div>
