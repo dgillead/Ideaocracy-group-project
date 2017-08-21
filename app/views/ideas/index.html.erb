@@ -3,7 +3,7 @@
   <% @ideas.each_with_index do |idea, index| %>
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><%= idea.title %> <%= idea.created_at.strftime('%y-%m-%d %H:%m') %></div>
-      <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><%= idea.summary %></p></div>
+      <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><p><%= link_to 'Discuss Idea', idea_path(idea), class: "pull-right" %></p><br><%= idea.summary %></p></div>
     </div>
   <% end %>
 <% else %>
