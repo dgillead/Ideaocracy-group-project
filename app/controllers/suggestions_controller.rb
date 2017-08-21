@@ -3,7 +3,7 @@ class SuggestionsController < ApplicationController
 
   def create
     @suggestion = @idea.suggestions.new(suggestion_params)
-    @suggestion['user_id'] = current_user.id
+    @suggestion[:user_id] = current_user.id
     if @suggestion.save
       redirect_to @idea
     end
