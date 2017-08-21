@@ -79,5 +79,13 @@ RSpec.describe IdeasController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it 'deletes the selected idea' do
+      sign_in(user)
+
+      expect{ delete :destroy, params: { id: idea1.id } }.to change{ Idea.count }.by(-1)
+    end
+  end
+
   DatabaseCleaner.clean
 end

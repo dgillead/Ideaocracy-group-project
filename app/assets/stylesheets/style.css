@@ -41,6 +41,15 @@
   word-wrap: break-word;
 }
 
+#idea-title,
+#idea-summary {
+  width: 60%;
+}
+
+#idea-summary {
+  height: 150px;
+}
+
 .intro-buttons {
   margin: 5px;
 }
@@ -49,3 +58,4 @@
   font-size: 18px;
   margin-left: 5px;
 }
+
