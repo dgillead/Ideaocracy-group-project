@@ -52,6 +52,12 @@ RSpec.describe IdeasController, type: :controller do
 
       expect{ post :create, params: { idea: valid_idea_attributes } }.to change{ Idea.count }.by(1)
     end
+
+    it 'redirects the user if they are not signed in' do
+      post :create, params: { idea: valid_idea_attributes }
+
+      expect(response.code).to eq('302')
+    end
   end
 
   describe 'PUT #update' do
