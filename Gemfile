@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'jquery-rails'
+gem 'local_time'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

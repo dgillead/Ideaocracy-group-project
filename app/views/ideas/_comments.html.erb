@@ -1,7 +1,7 @@
 <div id="comments-container">
   <% suggestion.comments.all.each do |comment| %>
       <hr>
-      <p id="comment-date" class="text-right"><%= comment.created_at.strftime('%m-%y-%d at %H:%m') %></p>
+      <p id="comment-date" class="text-right"><%= local_time(comment.created_at) %></p>
       <p><%= comment.body %></p>
       <hr>
   <% end %>
