@@ -1,8 +1,12 @@
-<% suggestion.comments.all.each do |comment| %>
-  <%= comment.body %>
-  <%= comment.created_at.strftime('%y-%m-%d %H:%m') %>
-  <br>
-<% end %>
+<div id="comments-container">
+  <% suggestion.comments.all.each do |comment| %>
+      <hr>
+      <p id="comment-date" class="text-right"><%= comment.created_at.strftime('%m-%y-%d at %H:%m') %></p>
+      <p><%= comment.body %></p>
+      <hr>
+  <% end %>
+</div>
+
 <div class="collapse" id="comment-box<%= index %>" aria-hidden="false">
   <form action="/comments" method="post">
     <div class="form-group">

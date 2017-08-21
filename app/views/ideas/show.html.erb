@@ -7,7 +7,6 @@
   <% @suggestions.each_with_index do |suggestion, index| %>
     <hr>
     <%= render 'suggestion_content', { suggestion: suggestion, index: index } %>
-    <hr>
     <%= render 'comments', { suggestion: suggestion, index: index } %>
 
   <% end %>

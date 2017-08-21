@@ -50,6 +50,21 @@
   height: 150px;
 }
 
+#suggestion-body {
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: #F0F3FC;
+  padding: 5px;
+}
+
+#comments-container {
+  margin-left: 35px;
+}
+
+#comment-date {
+  color: rgb(174, 175, 180);
+}
+
 .intro-buttons {
   margin: 5px;
 }
@@ -58,4 +73,3 @@
   font-size: 18px;
   margin-left: 5px;
 }
-
