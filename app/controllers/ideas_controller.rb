@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :find_idea, only: [:show]
+  before_action :find_idea, only: [:show, :edit, :update]
 
   def new
     @idea = Idea.new
@@ -22,6 +22,15 @@ class IdeasController < HomeController
     @suggestions = @idea.suggestions.all
   end
 
+  def edit
+  end
+
+  def update
+    if @idea.update_attributes(idea_params)
+      redirect_to @idea
+    end
+  end
+
   private
 
   def idea_params
@@ -31,4 +40,5 @@ class IdeasController < HomeController
   def find_idea
     @idea = Idea.find_by(id: params[:id])
   end
+
 end
