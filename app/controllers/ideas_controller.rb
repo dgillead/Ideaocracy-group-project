@@ -1,4 +1,5 @@
 class IdeasController < HomeController
+  before_action :authenticate_user!
   before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
   def new
