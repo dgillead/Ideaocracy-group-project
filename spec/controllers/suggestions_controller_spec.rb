@@ -18,6 +18,12 @@ RSpec.describe SuggestionsController, type: :controller do
 
       expect{ post :create, params: { idea_id: idea.id, user_id: user.id, body: 'Suggestion test body' } }.to change{ idea.suggestions.count }.by(1)
     end
+
+    it 'redirects the user if they are not signed in' do
+      post :create, params: { idea_id: idea.id, user_id: user.id, body: 'Suggestion test body' }
+
+      expect(response.code).to eq('302')
+    end
   end
 
   DatabaseCleaner.clean
