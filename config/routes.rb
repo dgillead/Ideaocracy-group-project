@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 
   get '/trello', to: 'trello_api#show', as: 'show_boards'
   post '/trello/boards', to: 'trello_api#create_board', as: 'create_board'
+  get '/auth', to: 'trello_api#get_token'
 end

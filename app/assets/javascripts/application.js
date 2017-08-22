@@ -19,17 +19,18 @@
 //= require_tree .
 
 function authenticateTrello() {
- window.Trello.authorize({
+ Trello.authorize({
     name: "YourApplication",
-    type: "popup",
     interactive: true,
     expiration: "never",
     persist: true,
     success: function () { onAuthorizeSuccessful(); },
-    scope: { write: false, read: true },
+    scope: { write: true, read: true },
   });
 }
 function onAuthorizeSuccessful() {
   var token = Trello.token();
   window.location.replace("/auth?token=" + token);
 }
+
+
