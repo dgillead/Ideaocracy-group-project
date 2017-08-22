@@ -18,6 +18,7 @@ class TrelloApiController < ApplicationController
     params[:suggestions].each do |suggestion|
       Trello::Card.create(name: suggestion, list_id: list_id)
     end
+    render :success
   end
 
   def get_token
