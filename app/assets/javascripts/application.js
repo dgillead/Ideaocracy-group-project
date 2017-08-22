@@ -17,3 +17,19 @@
 //= require bootstrap-sprockets
 //= require local-time
 //= require_tree .
+
+function authenticateTrello() {
+ window.Trello.authorize({
+    name: "YourApplication",
+    type: "popup",
+    interactive: true,
+    expiration: "never",
+    persist: true,
+    success: function () { onAuthorizeSuccessful(); },
+    scope: { write: false, read: true },
+  });
+}
+function onAuthorizeSuccessful() {
+  var token = Trello.token();
+  window.location.replace("/auth?token=" + token);
+}

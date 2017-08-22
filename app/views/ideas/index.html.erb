@@ -9,3 +9,10 @@
 <% else %>
   Nothing yet
 <% end %>
+
+
+<%= link_to 'show boards', show_boards_path %>
+<%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %>
+<a href="https://trello.com/1/authorize?key=cacfd2f5f9c6ae23474f2ebcd35d2dcc&scope=read%2Cwrite&name=My+Application&expiration=never&response_type=token
+">Authorize Trello</a>
+
