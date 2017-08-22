@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h1 class="text-center">Create Trello Board</h1>
+  <form action="/trello/boards" method="post">
+    <label for="board">Title:</label>
+    <input id="board-title" type="text" value="<%= @idea.title %>" name="board"></input>
+    <input type="submit" value="Create Board"></input>
+    <% @idea.suggestions.all.each_with_index do |suggestion| %>
+      <br>
+      <input type="checkbox" name="suggestions[]" value="<%= suggestion.body %>"> <%= suggestion.body %></input>
+    <% end %>
+  </form>
+</div>

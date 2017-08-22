@@ -65,6 +65,10 @@
   color: rgb(174, 175, 180);
 }
 
+#board-title {
+  width: 20%;
+}
+
 .intro-buttons {
   margin: 5px;
 }
