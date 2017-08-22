@@ -12,7 +12,12 @@ class TrelloApiController < ApplicationController
       trello.developer_public_key = "cacfd2f5f9c6ae23474f2ebcd35d2dcc"
       trello.member_token = current_user.trello
     end
-    Trello::Board.create(name: params[:board])
+    board = Trello::Board.create(name: params[:board])
+    @url = board.url
+    list_id = board.lists[0].id
+    params[:suggestions].each do |suggestion|
+      Trello::Card.create(name: suggestion, list_id: list_id)
+    end
   end
 
   def get_token
