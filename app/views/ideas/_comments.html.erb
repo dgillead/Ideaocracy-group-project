@@ -1,8 +1,12 @@
 <div id="comments-container">
-  <% suggestion.comments.all.each do |comment| %>
+  <% suggestion.comments.order(created_at: :desc).each do |comment| %>
       <hr>
       <p id="comment-date" class="text-right"><%= local_time(comment.created_at) %></p>
       <p><%= comment.body %></p>
+      <div>
+        <span class="pull-right"><%= link_to 'edit',edit_comment_path(comment) %> | <%= link_to 'delete', comment, data: {confirm: 'Are you sure?'}, method: :delete %>
+        </span>
+      </div>
       <hr>
   <% end %>
 </div>
