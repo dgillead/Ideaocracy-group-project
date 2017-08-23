@@ -1,12 +1,19 @@
-<h1 class="text-center">Ideas</h1>
-<% if @ideas.any? %>
-  <% @ideas.each_with_index do |idea, index| %>
-    <div class="panel panel-default">
-      <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><%= idea.title %> <%= idea.created_at.strftime('%y-%m-%d %H:%m') %></div>
-      <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><p><%= link_to 'Discuss Idea', idea_path(idea), class: "pull-right" %></p><br><%= idea.summary %></p></div>
-    </div>
-  <% end %>
-<% else %>
-  Nothing yet
-<% end %>
+<div id="table-body">
+  <h1 class="text-center">Ideas</h1>
+  <table class="table table-hover">
+    <% if @ideas.any? %>
+      <% @ideas.each_with_index do |idea, index| %>
+        <tr>
+          <td>
+           <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><%= idea.title %> <small class="text-muted"><%= local_time(idea.created_at,'%B %e, %Y')%></small></div>
+            <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><p><%= link_to 'Discuss Idea', idea_path(idea), class: "pull-right" %></p><br><%= idea.summary %></p></div>
+            </td>
+        </tr>
+      <% end %>
+    <% else %>
+      Nothing yet
+    <% end %>
+  </table>
+  
+</div>
 

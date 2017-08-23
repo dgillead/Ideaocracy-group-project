@@ -5,7 +5,7 @@
   <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id) %>
   <p><%= @idea.summary %></p>
   <% if @is_idea_creater %>
-    <p class="text-right"><%= link_to 'Edit ', edit_idea_path(@idea) %>|<%= link_to ' Delete', @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
+    <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>Delete'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
    <% end %>
 </div>
 <div id="suggestion-box" class="center-block">
