@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   before_action :find_suggestion, only: [:create]
   before_action :find_idea, only: [:create]
   before_action :find_comment, only: [:edit, :update, :destroy]
+  before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def create
     @comment = @suggestion.comments.new(comment_params)
@@ -28,6 +29,10 @@ class CommentsController < ApplicationController
   end
 
   private 
+
+  def authenticate_current_user
+    render '/errors/not_found' unless @comment.user_id == current_user.id
+  end
 
   def find_idea
     @idea = Idea.find_by(id: params[:idea_id])
