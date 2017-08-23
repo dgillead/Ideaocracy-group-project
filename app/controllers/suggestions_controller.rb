@@ -3,6 +3,8 @@ class SuggestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_idea, only: [:create]
   before_action :find_suggestion, only: [:up_vote, :down_vote]
+  before_action :find_suggestion_id, only: [:update]
+  before_action :authenticate_current_user, only: [:update, :destroy]
 
   def create
     @suggestion = @idea.suggestions.new(suggestion_params)
@@ -13,7 +15,6 @@ class SuggestionsController < ApplicationController
   end
 
   def update
-    @suggestion = Suggestion.find_by(id: params[:id])
     if @suggestion.update_attributes(update_suggestion_params)
       redirect_to idea_path(@suggestion.idea.id)
     end
@@ -54,6 +55,10 @@ class SuggestionsController < ApplicationController
 
   def update_suggestion_params
     params.require(:suggestion).permit(:body)
+  end
+
+  def find_suggestion_id
+    @suggestion = Suggestion.find_by(id: params[:id])
   end
 
   def authenticate_current_user
