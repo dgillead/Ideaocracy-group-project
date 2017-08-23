@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update_attributes(body: params[:comment][:body])
+    if @comment.update_attributes(update_comment_params)
       redirect_to idea_path(@comment.suggestion.idea.id)
     end
   end
@@ -39,6 +39,10 @@ class CommentsController < ApplicationController
 
   def find_suggestion
     @suggestion = Suggestion.find_by(id: params[:suggestion_id])
+  end
+
+  def update_comment_params
+    params.require(:comment).permit(:body)
   end
 
   def comment_params
