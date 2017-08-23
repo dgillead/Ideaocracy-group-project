@@ -1,3 +1,14 @@
+<div class="collapse" id="comment-box<%= index %>" aria-hidden="false">
+  <form action="/comments" method="post">
+    <div class="form-group">
+      <label for="Textarea">Leave a comment</label>
+      <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
+      <input type="hidden" name="suggestion_id" value="<%= suggestion.id %>">
+      <input type="hidden" name="idea_id" value="<%= @idea.id %>">
+      <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary" %>
+    </div>
+  </form>
+</div>
 <div id="comments-container">
   <% suggestion.comments.order(created_at: :desc).each_with_index do |comment, index| %>
       <hr>
@@ -16,14 +27,3 @@
   <% end %>
 </div>
 
-<div class="collapse" id="comment-box<%= index %>" aria-hidden="false">
-  <form action="/comments" method="post">
-    <div class="form-group">
-      <label for="Textarea">Leave a comment</label>
-      <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
-      <input type="hidden" name="suggestion_id" value="<%= suggestion.id %>">
-      <input type="hidden" name="idea_id" value="<%= @idea.id %>">
-      <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary" %>
-    </div>
-  </form>
-</div>
