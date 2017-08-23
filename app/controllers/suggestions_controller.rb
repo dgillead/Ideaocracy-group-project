@@ -12,6 +12,20 @@ class SuggestionsController < ApplicationController
     end
   end
 
+  def update
+    @suggestion = Suggestion.find_by(id: params[:id])
+    if @suggestion.update_attributes(update_suggestion_params)
+      redirect_to idea_path(@suggestion.idea.id)
+    end
+  end
+
+  def destroy
+    @suggestion = Suggestion.find_by(id: params[:id])
+    @idea = @suggestion.idea
+    @suggestion.destroy
+    redirect_to @idea
+  end
+
   def up_vote
     if @suggestion.up_votes.include?(current_user.id)
       new_votes = @suggestion.votes
@@ -37,6 +51,10 @@ class SuggestionsController < ApplicationController
   end
 
   private
+
+  def update_suggestion_params
+    params.require(:suggestion).permit(:body)
+  end
 
   def authenticate_current_user
     render '/errors/not_found' unless @suggestion.user_id == current_user.id
