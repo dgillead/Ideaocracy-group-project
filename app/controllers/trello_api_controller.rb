@@ -31,5 +31,7 @@ class TrelloApiController < ApplicationController
 
   def find_idea
     @idea = Idea.find_by(id: params[:idea_id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 end

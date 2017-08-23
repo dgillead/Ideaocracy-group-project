@@ -14,9 +14,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @comment.update_attributes(update_comment_params)
       redirect_to idea_path(@comment.suggestion.idea.id)
@@ -28,7 +25,7 @@ class CommentsController < ApplicationController
     redirect_to idea_path(@comment.suggestion.idea.id)
   end
 
-  private 
+  private
 
   def authenticate_current_user
     render '/errors/not_found' unless @comment.user_id == current_user.id
@@ -39,7 +36,9 @@ class CommentsController < ApplicationController
   end
 
   def find_comment
-    @comment = Comment.find_by(id: params[:id])
+    @comment = Comment.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def find_suggestion

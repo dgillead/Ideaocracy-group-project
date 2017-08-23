@@ -64,5 +64,13 @@ RSpec.describe CommentsController, type: :controller do
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end
+
+    it 'renders 404 when the comment id does not exist' do
+      sign_in(user)
+
+      delete :destroy, params: { id: -1 }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 end
