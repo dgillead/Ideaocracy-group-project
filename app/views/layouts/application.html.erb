@@ -20,10 +20,10 @@
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><%=link_to "Hello, #{current_user.first_name} !"%></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+          <li><%=link_to '<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>'.html_safe %></li> 
+          <li><%= link_to '<i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>'.html_safe, destroy_user_session_path, method: :delete %></li> 
         <% else %>
-          <li><%= link_to 'Register', new_user_registration_path %></li> 
+          <li><%= link_to 'Register', new_user_registration_path %></li>
           <li><%= link_to 'Login', new_user_session_path %></li> 
         <% end %>
         </ul>

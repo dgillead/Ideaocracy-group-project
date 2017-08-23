@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_idea, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
@@ -21,9 +21,15 @@ class IdeasController < HomeController
   end
 
   def show
-    @is_idea_creater = (current_user.id == @idea.user_id)
+    if current_user
+      @is_idea_creator = (current_user.id == @idea.user_id)
+    end
     @suggestions = @idea.suggestions.all.order(votes: :desc)
-    @user = current_user
+    if current_user
+      @user_id = current_user.id
+    else
+      @user_id = nil
+    end
   end
 
   def edit
