@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   post '/trello/boards', to: 'trello_api#create_board', as: 'create_board'
   get '/auth', to: 'trello_api#get_token'
   get '/trello/new', to: 'trello_api#new', as: 'new_trello'
+  get '/collaborate/new', to: 'ideas#new_collaborator', as: 'new_collaborator'
   get '*unmatched_route', to: 'errors#not_found'
 end

@@ -1,6 +1,6 @@
 class IdeasController < HomeController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_idea, only: [:show, :edit, :update, :destroy]
+  before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def new
@@ -44,6 +44,17 @@ class IdeasController < HomeController
   def destroy
     @idea.destroy
     redirect_to ideas_path
+  end
+
+  def new_collaborator
+    if @idea.collaborators.include?(current_user.id)
+      flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
+    else
+      flash[:success] = "Added to collaborators list."
+      @idea.collaborators.push(current_user.id)
+      @idea.save
+    end
+    redirect_to @idea
   end
 
   private
