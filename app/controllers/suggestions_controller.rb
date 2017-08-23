@@ -3,6 +3,8 @@ class SuggestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_idea, only: [:create]
   before_action :find_suggestion, only: [:up_vote, :down_vote]
+  before_action :find_suggestion_id, only: [:update, :destroy]
+  before_action :authenticate_current_user, only: [:update, :destroy]
 
   def create
     @suggestion = @idea.suggestions.new(suggestion_params)
@@ -10,6 +12,19 @@ class SuggestionsController < ApplicationController
     if @suggestion.save
       redirect_to @idea
     end
+  end
+
+  def update
+    if @suggestion.update_attributes(update_suggestion_params)
+      redirect_to idea_path(@suggestion.idea.id)
+    end
+  end
+
+  def destroy
+    @suggestion = Suggestion.find_by(id: params[:id])
+    @idea = @suggestion.idea
+    @suggestion.destroy
+    redirect_to @idea
   end
 
   def up_vote
@@ -37,6 +52,14 @@ class SuggestionsController < ApplicationController
   end
 
   private
+
+  def update_suggestion_params
+    params.require(:suggestion).permit(:body)
+  end
+
+  def find_suggestion_id
+    @suggestion = Suggestion.find_by(id: params[:id])
+  end
 
   def authenticate_current_user
     render '/errors/not_found' unless @suggestion.user_id == current_user.id

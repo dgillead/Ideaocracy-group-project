@@ -8,7 +8,7 @@ class IdeasController < HomeController
   end
 
   def index
-    @ideas = Idea.all
+    @ideas = Idea.all.order(created_at: :desc)
   end
 
   def create

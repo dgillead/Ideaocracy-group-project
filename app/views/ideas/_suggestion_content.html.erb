@@ -15,6 +15,14 @@
     <% end %>
     <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
     <p class="text-right"><%= local_time(suggestion.created_at) %></p>
-  </p>
+
+    <% if suggestion.user_id == @user_id %>
+    <div class="collapse" id="edit-suggestion<%= suggestion.id %><%= index %>" aria-hidden="false">
+      <%= render 'edit_suggestion', { suggestion: suggestion } %>
+    </div>
+    <p class="text-right" data-toggle="collapse" data-target="#edit-suggestion<%= suggestion.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> |
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, suggestion, data: { confirm: 'Are you sure?' }, method: :delete %></p>
+    <% end %>
+    </p>
   <span><%= suggestion.body %> </span>
 </div>

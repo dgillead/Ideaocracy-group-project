@@ -49,7 +49,7 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe 'Delete #destroy' do
+  describe 'DELETE #destroy' do
     let!(:comment) { suggestion.comments.create!(user_id: user.id, body: 'Comment test body') }
     it 'deletes the comment' do
       sign_in(user)
