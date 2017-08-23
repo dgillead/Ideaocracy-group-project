@@ -1,13 +1,18 @@
 <div id="comments-container">
-  <% suggestion.comments.order(created_at: :desc).each do |comment| %>
+  <% suggestion.comments.order(created_at: :desc).each_with_index do |comment, index| %>
       <hr>
       <p id="comment-date" class="text-right"><%= local_time(comment.created_at) %></p>
       <p><%= comment.body %></p>
       <div>
         <% if comment.user_id == @user_id %>
-        <span class="pull-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe,edit_comment_path(comment) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, comment, data: {confirm: 'Are you sure?'}, method: :delete %>
+        <div class="collapse" id="edit-comment<%= comment.id %><%= index %>" aria-hidden="false">
+          <%= render 'edit_comment', { comment: comment } %>
+        </div>
+        <span class="pull-right" data-toggle="collapse" data-target="#edit-comment<%= comment.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> | 
+
+        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, comment, data: { confirm: 'Are you sure?' }, method: :delete %></span>
         <% end %>
-        </span>
+        
       </div>
       <hr>
   <% end %>
