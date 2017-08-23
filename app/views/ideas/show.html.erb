@@ -1,8 +1,12 @@
 <div class="center-block" id="idea-container">
   <h1 class="text-center"><%= @idea.title %></h1>
+  <%= link_to 'show boards', show_boards_path %>
+  <%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %>
   <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id) %>
   <p><%= @idea.summary %></p>
-  <p class="text-right"><%= link_to 'Edit ', edit_idea_path(@idea) %>|<%= link_to ' Delete', @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
+  <% if @is_idea_creater %>
+    <p class="text-right"><%= link_to 'Edit ', edit_idea_path(@idea) %>|<%= link_to ' Delete', @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
+   <% end %>
 </div>
 <div id="suggestion-box" class="center-block">
   <% @suggestions.each_with_index do |suggestion, index| %>

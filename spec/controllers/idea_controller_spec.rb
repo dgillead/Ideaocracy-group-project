@@ -9,11 +9,13 @@ RSpec.describe IdeasController, type: :controller do
 
   let!(:user) { User.create!(first_name: 'Test first_name', last_name: 'Test last_name', email: 'test@test.com', password: 'asdfasdf') }
 
+  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', email: 'test2@test.com', password: 'asdfasdf') }
+
   let!(:valid_idea_attributes) { { title: 'Test idea title', summary: 'Test idea summary' } }
 
   let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
 
-  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user.id) }
+  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user2.id) }
 
   describe 'GET #new' do
     it 'creates a new idea and assigns it to @idea' do
@@ -71,6 +73,14 @@ RSpec.describe IdeasController, type: :controller do
       expect(idea1.title).to eq('Idea update')
       expect(idea1.summary).to eq('Summary update')
     end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      put :update, params: { id: idea1.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'GET #edit' do
@@ -83,6 +93,14 @@ RSpec.describe IdeasController, type: :controller do
       expect(response.body).to include('Idea1 summary')
       expect(response.body).to include('Edit Idea')
     end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      get :edit, params: { id: idea1.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -90,6 +108,14 @@ RSpec.describe IdeasController, type: :controller do
       sign_in(user)
 
       expect{ delete :destroy, params: { id: idea1.id } }.to change{ Idea.count }.by(-1)
+    end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      delete :destroy, params: { id: idea1.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
     end
   end
 

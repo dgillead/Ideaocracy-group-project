@@ -1,6 +1,7 @@
 class IdeasController < HomeController
   before_action :authenticate_user!, except: [:index]
   before_action :find_idea, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def new
     @idea = Idea.new
@@ -20,6 +21,7 @@ class IdeasController < HomeController
   end
 
   def show
+    @is_idea_creater = (current_user.id == @idea.user_id)
     @suggestions = @idea.suggestions.all.order(votes: :desc)
     @user = current_user
   end
@@ -39,6 +41,10 @@ class IdeasController < HomeController
   end
 
   private
+
+  def authenticate_current_user
+    render '/errors/not_found' unless @idea.user_id == current_user.id
+  end
 
   def idea_params
     params.require(:idea).permit(:title, :summary)

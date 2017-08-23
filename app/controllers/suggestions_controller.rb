@@ -38,6 +38,10 @@ class SuggestionsController < ApplicationController
 
   private
 
+  def authenticate_current_user
+    render '/errors/not_found' unless @suggestion.user_id == current_user.id
+  end
+
   def suggestion_params
     params.permit(:body)
   end
