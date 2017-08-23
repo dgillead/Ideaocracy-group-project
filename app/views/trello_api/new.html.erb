@@ -4,9 +4,17 @@
     <label for="board">Title:</label>
     <input id="board-title" type="text" value="<%= @idea.title %>" name="board"></input>
     <input type="submit" value="Create Board"></input>
-    <% @idea.suggestions.all.each_with_index do |suggestion| %>
-      <br>
-      <input type="checkbox" name="suggestions[]" value="<%= suggestion.body %>"> <%= suggestion.body %></input>
-    <% end %>
+    <div id="trello-board-table">
+      <table class="table table-hover">
+        <tr>
+          <th>Suggestions</th>
+        </tr>
+        <% @idea.suggestions.all.each_with_index do |suggestion| %>
+        <tr>
+          <td><input type="checkbox" name="suggestions[]" value="<%= suggestion.body %>"> <%= suggestion.body %></input></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </form>
 </div>
