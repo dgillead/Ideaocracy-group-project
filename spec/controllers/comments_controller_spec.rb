@@ -28,32 +28,6 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    let(:comment) { suggestion.comments.create!(user_id: user.id, body: 'Comment test body') }
-    it 'renders a form for the user to edit the comment' do
-      sign_in(user)
-
-      get :edit, params: { id: comment.id }
-
-      expect(response.body).to include("#{comment.body}")
-      expect(response.body).to include("Edit Comment")
-    end
-
-    it 'will ask for sign in when user is not sign in' do
-      get :edit, params: { id: comment.id }
-
-      expect(response.code).to eq("302")
-    end
-
-    it 'renders 404 when the user is not current user' do
-      sign_in(user2)
-
-      get :edit, params: { id: comment.id }
-
-      expect(response.body).to include("The page you were looking for doesn't exist.")
-    end
-  end
-
   describe 'PUT #update' do
     let(:comment_params) { {body: 'new comment body'} }
     let(:comment) { suggestion.comments.create!(user_id: user.id, body: 'Comment test body') }

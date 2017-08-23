@@ -22,7 +22,7 @@ class IdeasController < HomeController
 
   def show
     if current_user
-      @is_idea_creater = (current_user.id == @idea.user_id)
+      @is_idea_creator = (current_user.id == @idea.user_id)
     end
     @suggestions = @idea.suggestions.all.order(votes: :desc)
     if current_user

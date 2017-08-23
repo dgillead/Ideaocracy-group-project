@@ -1,10 +1,9 @@
 <div class="center-block" id="idea-container">
   <h1 class="text-center"><%= @idea.title %></h1>
-  <%= link_to 'show boards', show_boards_path %>
-  <%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %>
+  <%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %> | 
   <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id) %>
   <p><%= @idea.summary %></p>
-  <% if @is_idea_creater %>
+  <% if @is_idea_creator %>
     <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>Delete'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
    <% end %>
 </div>

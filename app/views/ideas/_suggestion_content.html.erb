@@ -8,7 +8,7 @@
         <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>'.html_safe, up_vote_path(suggestion_id: suggestion.id), method: :patch %>
     <% end %>
 
-    <% if suggestion.up_votes.include?(@user_id) %>
+    <% if suggestion.down_votes.include?(@user_id) %>
       <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>
     <% else %>
       <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>

@@ -37,12 +37,9 @@ RSpec.describe IdeasController, type: :controller do
   end
 
   describe 'GET #index' do
-
     it 'lists all the ideas' do
       get :index
 
-      expect(response.body).to include("#{idea1.created_at.strftime('%y-%m-%d %H:%m')}")
-      expect(response.body).to include("#{idea2.created_at.strftime('%y-%m-%d %H:%m')}")
       expect(response.body).to include("#{idea1.title}".html_safe)
       expect(response.body).to include("#{idea2.title}".html_safe)
     end
@@ -80,6 +77,47 @@ RSpec.describe IdeasController, type: :controller do
       put :update, params: { id: idea1.id }
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+  end
+
+  describe 'GET #show' do
+    it 'shows the selected idea' do
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).to include("#{idea1.title}")
+      expect(response.body).to include("#{idea1.summary}")
+    end
+
+    it 'shows the add suggestion box for selected idea' do
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).to include("Have a good suggestion?")
+      expect(response.body).to include("Post your suggestion")
+    end
+
+    it 'shows the edit idea link if login user is the creator' do
+      sign_in(user)
+
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).to include("ideas/#{idea1.id}/edit")
+    end
+
+    it 'does not show edit idea link if login user is not the creator' do
+      sign_in(user2)
+
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).not_to include("ideas/#{idea1.id}/edit")
+    end
+
+    it 'shows the delete idea link if login user is the creator' do
+      sign_in(user)
+
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).to include("ideas/#{idea1.id}")
+      expect(response.body).to include('data-method="delete"')
     end
   end
 

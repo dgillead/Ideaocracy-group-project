@@ -9,10 +9,8 @@
           <%= render 'edit_comment', { comment: comment } %>
         </div>
         <span class="pull-right" data-toggle="collapse" data-target="#edit-comment<%= comment.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> | 
-
         <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, comment, data: { confirm: 'Are you sure?' }, method: :delete %></span>
         <% end %>
-        
       </div>
       <hr>
   <% end %>
