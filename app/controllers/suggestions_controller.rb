@@ -58,7 +58,9 @@ class SuggestionsController < ApplicationController
   end
 
   def find_suggestion_id
-    @suggestion = Suggestion.find_by(id: params[:id])
+    @suggestion = Suggestion.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def authenticate_current_user
@@ -70,10 +72,14 @@ class SuggestionsController < ApplicationController
   end
 
   def find_suggestion
-    @suggestion = Suggestion.find_by(id: params[:suggestion_id])
+    @suggestion = Suggestion.find(params[:suggestion_id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def find_idea
-    @idea = Idea.find_by(id: params[:idea_id])
+    @idea = Idea.find(params[:idea_id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 end

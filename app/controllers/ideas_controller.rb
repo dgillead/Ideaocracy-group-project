@@ -57,7 +57,9 @@ class IdeasController < HomeController
   end
 
   def find_idea
-    @idea = Idea.find_by(id: params[:id])
+    @idea = Idea.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
 end
