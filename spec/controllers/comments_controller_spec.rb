@@ -8,6 +8,8 @@ RSpec.describe CommentsController, type: :controller do
 
   let!(:user) { User.create!(first_name: 'Test first_name', last_name: 'Test last_name', email: 'test@test.com', password: 'asdfasdf') }
 
+  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', email: 'test2@test.com', password: 'asdfasdf') }
+
   let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
 
   let!(:suggestion) { Suggestion.create!(body: 'Suggestion test body', user_id: user.id, idea_id: idea1.id) }
@@ -42,18 +44,51 @@ RSpec.describe CommentsController, type: :controller do
 
       expect(response.code).to eq("302")
     end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      get :edit, params: { id: comment.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'PUT #update' do
     let(:comment_params) { {body: 'new comment body'} }
     let(:comment) { suggestion.comments.create!(user_id: user.id, body: 'Comment test body') }
-    xit 'updates the comment' do
+    it 'updates the comment' do
       sign_in(user)
 
-      patch :update, params: { comment: comment_params }
+      put :update, params: { id: comment.id, comment: comment_params }
       comment.reload
 
       expect(comment.body).to eq('new comment body')
+    end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      put :update, params: { id: comment.id, comment: comment_params }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+  end
+
+  describe 'Delete #destroy' do
+    let!(:comment) { suggestion.comments.create!(user_id: user.id, body: 'Comment test body') }
+    it 'deletes the comment' do
+      sign_in(user)
+
+      expect{ delete :destroy, params: { id: comment.id } }.to change{ suggestion.comments.count }.by(-1)
+    end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      delete :destroy, params: { id: comment.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
     end
   end
 end
