@@ -90,7 +90,7 @@ RSpec.describe SuggestionsController, type: :controller do
     it 'updates the suggestion' do
       sign_in(user)
       update_params = { body: 'new body' }
-      
+
       put :update, params: { id: suggestion.id, suggestion: update_params }
       suggestion.reload
 
@@ -102,6 +102,22 @@ RSpec.describe SuggestionsController, type: :controller do
       update_params = { body: 'new body' }
 
       put :update, params: { id: suggestion.id, suggestion: update_params }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'deletes the suggestion' do
+      sign_in(user)
+
+      expect{ delete :destroy, params: { id: suggestion.id } }.to change{ idea.suggestions.count }.by(-1)
+    end
+
+    it 'renders 404 when the user is not current user' do
+      sign_in(user2)
+
+      delete :destroy, params: { id: suggestion.id }
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end

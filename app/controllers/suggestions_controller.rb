@@ -3,7 +3,7 @@ class SuggestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_idea, only: [:create]
   before_action :find_suggestion, only: [:up_vote, :down_vote]
-  before_action :find_suggestion_id, only: [:update]
+  before_action :find_suggestion_id, only: [:update, :destroy]
   before_action :authenticate_current_user, only: [:update, :destroy]
 
   def create
