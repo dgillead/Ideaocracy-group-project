@@ -36,7 +36,9 @@ class CommentsController < ApplicationController
   end
 
   def find_comment
-    @comment = Comment.find_by(id: params[:id])
+    @comment = Comment.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def find_suggestion

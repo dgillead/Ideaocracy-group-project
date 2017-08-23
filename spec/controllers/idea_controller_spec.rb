@@ -78,6 +78,14 @@ RSpec.describe IdeasController, type: :controller do
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end
+
+    it 'renders 404 when the idea id does not exist' do
+      sign_in(user)
+
+      put :update, params: { id: -1 }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'GET #show' do
@@ -119,6 +127,14 @@ RSpec.describe IdeasController, type: :controller do
       expect(response.body).to include("ideas/#{idea1.id}")
       expect(response.body).to include('data-method="delete"')
     end
+
+    it 'renders 404 when the idea id does not exist' do
+      sign_in(user)
+
+      get :show, params: { id: -1 }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'GET #edit' do
@@ -139,6 +155,14 @@ RSpec.describe IdeasController, type: :controller do
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end
+
+    it 'renders 404 when the idea id does not exist' do
+      sign_in(user)
+
+      get :edit, params: { id: -1 }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -152,6 +176,14 @@ RSpec.describe IdeasController, type: :controller do
       sign_in(user2)
 
       delete :destroy, params: { id: idea1.id }
+
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+
+    it 'renders 404 when the idea id does not exist' do
+      sign_in(user)
+
+      delete :destroy, params: { id: -1 }
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end
