@@ -20,6 +20,7 @@ class IdeasController < HomeController
   end
 
   def show
+    @is_idea_creater = (current_user.id == @idea.user_id)
     @suggestions = @idea.suggestions.all.order(votes: :desc)
     @user = current_user
   end
