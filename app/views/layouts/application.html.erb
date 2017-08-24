@@ -13,10 +13,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse bg-inverse">
+    <nav class="navbar navbar-inverse bg-inverse grid-float-breakpoint">
       <a class="navbar-brand" href="/">Ideaocracy</a>
       <% if current_user %>
-        <a href="/ideas/new"><i id="lightbulb-icon" class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
+        <a href="/ideas/new"> <i id="lightbulb-icon" class="fa fa-lightbulb-o" aria-hidden="false"><font size="3"> New Idea</font> </i></a>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
