@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require user_page.js
 //= require local-time
 //= require_tree .
 
@@ -35,3 +36,4 @@ function onAuthorizeSuccessful() {
   var token = Trello.token();
   window.location.replace("/auth?token=" + token);
 }
+
