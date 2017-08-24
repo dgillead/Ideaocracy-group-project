@@ -16,5 +16,5 @@
 /node_modules
 /yarn-error.log
 /config/secrets.yml
-
+coverage
 .byebug_history
