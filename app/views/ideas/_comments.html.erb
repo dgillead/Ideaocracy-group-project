@@ -12,6 +12,7 @@
 <div id="comments-container">
   <% suggestion.comments.order(created_at: :desc).each_with_index do |comment, index| %>
       <hr>
+      <span class="text-left creator-title"><%= link_to comment.user.username %> </span>
       <p id="comment-date" class="text-right"><%= local_time(comment.created_at) %></p>
       <p><%= comment.body %></p>
       <div>

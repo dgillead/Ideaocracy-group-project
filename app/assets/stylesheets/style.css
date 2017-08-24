@@ -89,3 +89,8 @@ body {
   font-size: 18px;
   margin-left: 5px;
 }
+
+.creator-title {
+  font-size: 12px;
+  color: grey;
+}
