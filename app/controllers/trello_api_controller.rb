@@ -25,6 +25,10 @@ class TrelloApiController < ApplicationController
     params[:suggestions].each do |suggestion|
       Trello::Card.create(name: suggestion, list_id: list_id)
     end
+    params[:collaborators].each do |collaborator|
+      user = User.find(collaborator)
+      HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{Rails.application.secrets.trello_api_key}&token=#{board.client.member_token}")
+    end
     render :success
   end
 
