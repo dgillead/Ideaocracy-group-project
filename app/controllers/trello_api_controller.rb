@@ -5,6 +5,13 @@ class TrelloApiController < ApplicationController
   before_action :find_idea, only: [:new]
 
   def new
+    @collaborators_array = {}
+    params[:collaborators].each do |collaborator|
+      user = User.find(collaborator)
+      username = user.username
+      user_id = user.id
+      @collaborators_array[:"#{username}"] = user_id
+    end
   end
 
   def create_board
