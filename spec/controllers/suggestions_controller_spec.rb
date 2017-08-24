@@ -6,9 +6,9 @@ DatabaseCleaner.strategy = :truncation
 RSpec.describe SuggestionsController, type: :controller do
   render_views
 
-  let!(:user) { User.create!(first_name: 'Test first_name', last_name: 'Test last_name', email: 'test@test.com', password: 'asdfasdf') }
+  let!(:user) { User.create!(first_name: 'Test first_name', last_name: 'Test last_name', username: 'username1', email: 'test@test.com', password: 'asdfasdf') }
 
-  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', email: 'test2@test.com', password: 'asdfasdf') }
+  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', username: 'username2', email: 'test2@test.com', password: 'asdfasdf') }
 
   let!(:idea) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
 
