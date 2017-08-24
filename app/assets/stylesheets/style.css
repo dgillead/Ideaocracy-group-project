@@ -59,7 +59,7 @@ body {
   padding: 5px;
 }
 
-#suggestion-edit-box {
+.edit-box {
   width: 80%;
 }
 
@@ -83,6 +83,10 @@ body {
 
 #create-board-title {
   margin-bottom: 10px;
+}
+
+#register-button {
+  margin-top: 5px;
 }
 
 .intro-buttons {
