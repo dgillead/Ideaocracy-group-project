@@ -2,7 +2,8 @@ require 'trello'
 class TrelloApiController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create_board]
   before_action :authenticate_user!
-  before_action :find_idea, only: [:new]
+  before_action :find_idea, only: [:new, :create_board]
+  before_action :authenticate_current_user, only: [:new, :create_board]
 
   def new
     @collaborators_array = {}
@@ -39,6 +40,10 @@ class TrelloApiController < ApplicationController
   end
 
   private
+
+  def authenticate_current_user
+    render '/errors/not_found' unless @idea.user_id == current_user.id
+  end
 
   def find_idea
     @idea = Idea.find_by(id: params[:idea_id])
