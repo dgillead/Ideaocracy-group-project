@@ -3,7 +3,11 @@
   <form action="/trello/boards" method="post">
     <label for="board">Title:</label>
     <input id="board-title" type="text" value="<%= @idea.title %>" name="board"></input>
-    <input type="submit" value="Create Board"></input>
+    <% if current_user.trello != nil %>
+      <input type="submit" value="Create Board"></input>
+    <% else %>
+      <%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %>
+    <% end %>
     <div id="trello-board-table">
       <table class="table table-hover">
         <tr>
@@ -15,9 +19,10 @@
         </tr>
         <% end %>
       </table>
-
-        <% @collaborators_array.each do |collaborator, id| %>
-          <input type="checkbox" name="collaborators[]" value="<%= id %>"><%= collaborator %></input>
+        <% if @collaborators_array %>
+          <% @collaborators_array.each do |collaborator, id| %>
+            <input type="checkbox" name="collaborators[]" value="<%= id %>"><%= collaborator %></input>
+          <% end %>
         <% end %>
 
     </div>

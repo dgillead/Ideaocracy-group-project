@@ -7,12 +7,14 @@ class TrelloApiController < ApplicationController
   before_action :authenticate_current_user, only: [:new]
 
   def new
-    @collaborators_array = {}
-    params[:collaborators].each do |collaborator|
-      user = User.find(collaborator)
-      username = user.username
-      user_id = user.id
-      @collaborators_array[:"#{username}"] = user_id
+    if params[:collaborators]
+      @collaborators_array = {}
+      params[:collaborators].each do |collaborator|
+        user = User.find(collaborator)
+        username = user.username
+        user_id = user.id
+        @collaborators_array[:"#{username}"] = user_id
+      end
     end
   end
 
