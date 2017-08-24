@@ -9,12 +9,17 @@
         <tr>
           <th>Suggestions</th>
         </tr>
-        <% @idea.suggestions.all.each_with_index do |suggestion| %>
+        <% @idea.suggestions.all.each do |suggestion| %>
         <tr>
           <td><input type="checkbox" name="suggestions[]" value="<%= suggestion.body %>"> <%= suggestion.body %></input></td>
         </tr>
         <% end %>
       </table>
+
+        <% @collaborators_array.each do |collaborator, id| %>
+          <input type="checkbox" name="collaborators[]" value="<%= id %>"><%= collaborator %></input>
+        <% end %>
+
     </div>
   </form>
 </div>

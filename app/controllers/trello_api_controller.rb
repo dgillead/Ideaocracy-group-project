@@ -12,7 +12,6 @@ class TrelloApiController < ApplicationController
       user_id = user.id
       @collaborators_array[:"#{username}"] = user_id
     end
-    binding.pry
   end
 
   def create_board
