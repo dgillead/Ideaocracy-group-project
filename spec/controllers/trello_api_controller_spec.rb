@@ -8,7 +8,7 @@ RSpec.describe TrelloApiController, type: :controller do
 
   let!(:user) { User.create!(first_name: 'Test first_name', last_name: 'Test last_name', username: 'username1', email: 'test@test.com', password: 'asdfasdf') }
 
-  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', username: 'username2', email: 'test2@test.com', password: 'asdfasdf', trello: 'asdfasdfasf') }
+  let!(:user2) { User.create!(first_name: 'Test first_name2', last_name: 'Test last_name2', username: 'username2', email: 'test2@test.com', password: 'asdfasdf', trello: "#{Rails.application.secrets.trello_user_token}") }
 
   let!(:idea) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user2.id, collaborators: [user.id, user2.id]) }
 
@@ -39,6 +39,16 @@ RSpec.describe TrelloApiController, type: :controller do
       expect(response.body).to include('suggestion body')
       expect(response.body).to include('username2')
       expect(response.body).to include('Authorize Trello')
+    end
+  end
+
+  describe 'POST #create' do
+    it 'creates a trello board' do
+      sign_in(user2)
+
+      post :create_board, params: { board: 'Test board', suggestions: ['test suggestion 1', 'test suggestion 2'], collaborators: [user.id, user2.id]}
+
+      expect(response.body).to include('Board created successfully.')
     end
   end
 
