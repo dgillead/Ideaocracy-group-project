@@ -1,0 +1,9 @@
+<h1 class="text-center">Ideas</h1>
+<% if @ideas.any? %>
+  <% @ideas.each do |idea| %>
+     <p><%= link_to idea.title, idea %></p>
+    <%= idea.created_at %>
+  <% end %>
+<% else %>
+  <p>Not thing yet</p>
+<% end %>

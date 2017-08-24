@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :user_suggestions ]
   def index
-    @suggestions = current_user.suggestions.all
   end
 
   def suggestions
@@ -9,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def ideas
-     @ideas = current_user.iedas.all
+     @ideas = current_user.ideas.all
   end
 
   def comments
