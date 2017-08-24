@@ -5,6 +5,13 @@ class TrelloApiController < ApplicationController
   before_action :find_idea, only: [:new]
 
   def new
+    @collaborators_array = {}
+    params[:collaborators].each do |collaborator|
+      user = User.find(collaborator)
+      username = user.username
+      user_id = user.id
+      @collaborators_array[:"#{username}"] = user_id
+    end
   end
 
   def create_board
@@ -17,6 +24,10 @@ class TrelloApiController < ApplicationController
     list_id = board.lists[0].id
     params[:suggestions].each do |suggestion|
       Trello::Card.create(name: suggestion, list_id: list_id)
+    end
+    params[:collaborators].each do |collaborator|
+      user = User.find(collaborator)
+      HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{Rails.application.secrets.trello_api_key}&token=#{board.client.member_token}")
     end
     render :success
   end

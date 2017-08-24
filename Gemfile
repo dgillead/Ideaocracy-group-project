@@ -35,6 +35,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'local_time'
+gem 'http'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
