@@ -135,6 +135,28 @@ RSpec.describe IdeasController, type: :controller do
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
     end
+
+    it 'shows a link to create a trello board if login as creator' do
+      sign_in(user)
+
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).to include('Create Trello Board')
+    end
+
+    it 'does not show a link to create a trello board if not login as creator' do
+      sign_in(user2)
+
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).not_to include('Create Trello Board')
+    end
+
+    it 'does not show a link to create a trello board if not login' do
+      get :show, params: { id: idea1.id}
+
+      expect(response.body).not_to include('Create Trello Board')
+    end
   end
 
   describe 'GET #edit' do
