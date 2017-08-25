@@ -21,12 +21,7 @@
     </div>
     <ul class="list-unstyled components">
       <li class="active">
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li><a href="#">Home 1</a></li>
-          <li><a href="#">Home 2</a></li>
-          <li><a href="#">Home 3</a></li>
-        </ul>
+        <a href="/ideas">Home</a>
       </li>
       <li>
         <a href="#">About</a>
@@ -63,8 +58,8 @@
         </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Share idea</a></li>
+          <li><a href="/ideas">Home</a></li>
+          <li><a href="/ideas/new">Share idea</a></li>
         <% if current_user %>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
         <% else %>
@@ -76,19 +71,26 @@
     </div>
   </nav>
 <!-- Flash messages -->
-    <% flash.each do |name, msg| %>
-     <%= content_tag :div, msg, class: "alert alert-info text-center" %>
-    <% end %>
+   <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+          <%= value %>
+    </div>
+   <% end %>
     <%= yield %>
   </div>
   </div>
   </body>
- <script type="text/javascript">
-  $(document).ready(function () {
-   $('#sidebarCollapse').on('click', function () {
-       $('#sidebar').toggleClass('active');
-       $(this).toggleClass('active');
-       });
-    });
+   <script type="text/javascript">
+    $(document).ready(function () {
+     $('#sidebarCollapse').on('click', function () {
+         $('#sidebar').toggleClass('active');
+         $(this).toggleClass('active');
+         });
+      });
+
+    setTimeout(function(){
+    $('.alert').fadeOut();
+   }, 5000);
+
    </script>
 </html>
