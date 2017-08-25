@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :user_suggestions ]
   def index
+    
   end
 
   def suggestions
@@ -14,11 +15,5 @@ class UsersController < ApplicationController
   def comments
      @comments = current_user.comments.all
   end
-
-  def setting
-    
-  end
-
-  private
 
 end
