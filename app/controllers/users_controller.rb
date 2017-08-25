@@ -15,6 +15,10 @@ class UsersController < ApplicationController
      @comments = current_user.comments.all
   end
 
+  def setting
+    
+  end
+
   private
 
 end

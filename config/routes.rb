@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/users/ideas', to: 'users#ideas', as: 'show_user_ideas'
   get '/users/suggestions', to: 'users#suggestions', as: 'show_user_suggestions'
   get '/users/comments', to: 'users#comments', as: 'show_user_comments'
+  get '/users/setting', to: 'users#setting', as: 'show_user_setting'
 
   get '*unmatched_route', to: 'errors#not_found'
 end

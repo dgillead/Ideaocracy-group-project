@@ -30,7 +30,7 @@
         <ul class="collapse list-unstyled" id="pageSubmenu">
 
           <%= link_to show_user_ideas_path do%>
-           Your deas <%= content_tag :span,"#{current_user.ideas.count}",class:"badge" %>
+           Your ideas <%= content_tag :span,"#{current_user.ideas.count}",class:"badge" %>
           <% end %>
 
           <%= link_to show_user_suggestions_path do%>
@@ -44,7 +44,7 @@
         <% end %>
       </li>
       <li>
-        <a href="#">Portfolio</a>
+        <a href="/users/setting">Account Setting</a>
       </li>
       <li>
         <a href="#">Contact</a>
