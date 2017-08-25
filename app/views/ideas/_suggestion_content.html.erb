@@ -1,5 +1,4 @@
 <div id="suggestion-body">
-  <div class="container">
     <p class="text-left"><%= local_time(suggestion.created_at) %><span class="pull-right"><%= suggestion.votes %></span></p>
     <span class="text-left creator-title"><%= link_to suggestion.user.username %></span>
       <span class="pull-right">
@@ -26,5 +25,4 @@
     <p class="text-right" data-toggle="collapse" data-target="#edit-suggestion<%= suggestion.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> |
       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, suggestion, data: { confirm: 'Are you sure?' }, method: :delete %></p>
       <% end %>
-  </div>
   </div>
