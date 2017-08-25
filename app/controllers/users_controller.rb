@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def ideas
-     @ideas = current_user.ideas.all
+    @ideas = current_user.ideas.paginate(:page => params[:page])
   end
 
   def comments

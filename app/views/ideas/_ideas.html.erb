@@ -1,5 +1,11 @@
 <div id="table-body">
   <table class="table table-hover">
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info ideas %>
+    </div>
+    <%= will_paginate ideas, :container => false %>
+  </div>
     <% if ideas.any? %>
       <% ideas.each_with_index do |idea, index| %>
         <tr>
@@ -14,4 +20,10 @@
       <p>No ideas exist yet.</p>
     <% end %>
   </table>
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info ideas %>
+    </div>
+    <%= will_paginate ideas, :container => false %>
+  </div>
 </div>
