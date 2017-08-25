@@ -3,14 +3,14 @@
     <span class="text-left creator-title"><%= suggestion.user.username %></span>
       <span class="pull-right">
         <% if suggestion.up_votes.include?(@user_id) %>
-            <i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>
+            <i class="thumbs-up suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>
         <% else %>
-            <i class="suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>
+            <i class="thumbs-up suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>
         <% end %>
         <% if suggestion.down_votes.include?(@user_id) %>
-          <i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>
+          <i class="thumbs-down suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>
         <% else %>
-          <i class="suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>
+          <i class="thumbs-down suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>
         <% end %>
         <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
       </span>

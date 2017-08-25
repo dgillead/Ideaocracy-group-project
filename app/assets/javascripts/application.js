@@ -37,12 +37,14 @@ function onAuthorizeSuccessful() {
 }
 
 $(document).ready(function () {
-  $('.fa-thumbs-up').on('click', function(e) {
+  $('.thumbs-up').on('click', function(e) {
     e.preventDefault();
     let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
     let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
     let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
     if (voteCount == voteCountDB){
+      $(this).attr('class', "thumbs-up suggestion-icon fa fa-thumbs-up")
+      $(this).siblings('i').attr('class', "thumbs-down suggestion-icon fa fa-thumbs-o-down")
       voteCount++;
       $(this).parent().parent().find('#vote-count').text(voteCount.toString());
       jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
@@ -51,15 +53,20 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  $('.fa-thumbs-o-up').on('click', function(e) {
+  $('.thumbs-down').on('click', function(e) {
     e.preventDefault();
     let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
     let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
     let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
     if (voteCount == voteCountDB){
-      voteCount++;
+      $(this).attr('class', "thumbs-down suggestion-icon fa fa-thumbs-down")
+      $(this).siblings('i').attr('class', "thumbs-down suggestion-icon fa fa-thumbs-o-up")
+      voteCount--;
       $(this).parent().parent().find('#vote-count').text(voteCount.toString());
-      jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
+      jQuery.ajax({url: `/downvote?suggestion_id=${suggestionId}`, type: 'patch'});
     }
   }); 
 });
+
+
+
