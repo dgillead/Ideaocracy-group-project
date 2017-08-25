@@ -1,12 +1,11 @@
 <%= form_for (comment) do |f| %>
 
   <div class="field">
-    <%= f.label :body %>
-    <%= f.text_field :body, required: 'required' %>
+    <%= f.text_area :body, rows: 5, class: 'edit-box', required: 'required' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Edit", class: "btn btn-primary" %>
   </div>
 
 <% end %>

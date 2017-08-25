@@ -1,16 +1,20 @@
 require 'trello'
+
 class TrelloApiController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create_board]
   before_action :authenticate_user!
   before_action :find_idea, only: [:new]
+  before_action :authenticate_current_user, only: [:new]
 
   def new
-    @collaborators_array = {}
-    params[:collaborators].each do |collaborator|
-      user = User.find(collaborator)
-      username = user.username
-      user_id = user.id
-      @collaborators_array[:"#{username}"] = user_id
+    if params[:collaborators]
+      @collaborators_array = {}
+      params[:collaborators].each do |collaborator|
+        user = User.find(collaborator)
+        username = user.username
+        user_id = user.id
+        @collaborators_array[:"#{username}"] = user_id
+      end
     end
   end
 
@@ -22,12 +26,16 @@ class TrelloApiController < ApplicationController
     board = Trello::Board.create(name: params[:board])
     @url = board.url
     list_id = board.lists[0].id
-    params[:suggestions].each do |suggestion|
-      Trello::Card.create(name: suggestion, list_id: list_id)
+    if params[:suggestions]
+      params[:suggestions].each do |suggestion|
+        Trello::Card.create(name: suggestion, list_id: list_id)
+      end
     end
-    params[:collaborators].each do |collaborator|
-      user = User.find(collaborator)
-      HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{Rails.application.secrets.trello_api_key}&token=#{board.client.member_token}")
+    if params[:collaborators]
+      params[:collaborators].each do |collaborator|
+        user = User.find(collaborator)
+        HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{Rails.application.secrets.trello_api_key}&token=#{board.client.member_token}")
+      end
     end
     render :success
   end
@@ -39,6 +47,10 @@ class TrelloApiController < ApplicationController
   end
 
   private
+
+  def authenticate_current_user
+    render '/errors/not_found' unless @idea.user_id == current_user.id
+  end
 
   def find_idea
     @idea = Idea.find_by(id: params[:idea_id])
