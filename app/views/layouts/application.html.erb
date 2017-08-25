@@ -63,10 +63,14 @@
         </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Page</a></li>
-          <li><a href="#">Page</a></li>
-          <li><a href="#">Page</a></li>
-          <li><a href="#">Page</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Share idea</a></li>
+        <% if current_user %>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+        <% else %>
+          <li> <%= link_to 'Register', new_user_registration_path %> </li>
+          <li> <%= link_to 'Login', new_user_session_path %> </li>  
+        <% end %>
         </ul>
       </div>
     </div>

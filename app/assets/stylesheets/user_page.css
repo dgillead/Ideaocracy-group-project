@@ -24,7 +24,7 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
+    padding: 0px 10px;
     background: #fff;
     border: none;
     border-radius: 0;
@@ -52,6 +52,11 @@ a, a:hover, a:focus {
     display: flex;
     align-items: stretch;
     perspective: 1500px;
+}
+
+.navbar-default {
+    background-color: #ddd !important;
+    border-color: #e7e7e7;
 }
 
 #sidebar {
