@@ -36,8 +36,8 @@
               <li class="list-group-item">
                 <div class="list-text"><%= collaborator %></div>
                 <div class="material-switch pull-right">
-                  <input id="<%= id %>" name="collaborators[]" type="checkbox" value="<%= id %>"></input>
-                  <label for="<%= id %>" class="label-success"></label>
+                  <input id="collaborator<%= id %>" name="collaborators[]" type="checkbox" value="<%= id %>"></input>
+                  <label for="collaborator<%= id %>" class="label-success"></label>
                 </div>
               </li>
             <% end %>

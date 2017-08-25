@@ -3,6 +3,10 @@ body {
   overflow-x: hidden;
 }
 
+a:link {
+  text-decoration: underline;
+}
+
 #title {
   font-family: 'Maven Pro', sans-serif;
   color: black;
@@ -163,6 +167,7 @@ body {
 
 .list-text {
   width: 80%;
+  word-wrap: break-word;
   display: inline-block;
 }
 
