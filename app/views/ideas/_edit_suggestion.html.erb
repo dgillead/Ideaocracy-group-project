@@ -1,11 +1,11 @@
 <%= form_for (suggestion) do |f| %>
 
   <div class="field">
-    <%= f.text_area :body, rows: 5, id: 'suggestion-edit-box', required: 'required' %>
+    <%= f.text_area :body, rows: 5, class: 'edit-box', required: 'required' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Edit", class: "btn btn-primary" %>
   </div>
 
 <% end %>

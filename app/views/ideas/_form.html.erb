@@ -12,8 +12,10 @@
     </div>
 
     <div class="actions text-center">
-     <p> <%= f.submit %>
-       <%= link_to 'Cancel', @idea, method: :get %></p>
+     <p>
+       <%= f.submit "Submit", class: "btn btn-primary" %>
+       <%= link_to 'Cancel', @idea, method: :get %>
+     </p>
     </div>
   </div>
 
