@@ -158,3 +158,8 @@ body {
   width: 80%;
   display: inline-block;
 }
+
+.form-style {
+  width: 20%;
+  margin: auto;
+}
