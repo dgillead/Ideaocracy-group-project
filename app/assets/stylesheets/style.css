@@ -59,10 +59,6 @@ body {
   padding: 5px;
 }
 
-.edit-box {
-  width: 80%;
-}
-
 #comments-container {
   margin-left: 35px;
 }
@@ -93,6 +89,13 @@ body {
   margin-top: 5px;
 }
 
+.user-content {
+  width: 50%;
+}
+
+.edit-box {
+  width: 80%;
+}
 .intro-buttons {
   margin: 5px;
 }
@@ -105,6 +108,10 @@ body {
 .creator-title {
   font-size: 12px;
   color: grey;
+}
+
+.idea-title {
+  font-size: 20px;
 }
 
 /* Checkbox Style */
