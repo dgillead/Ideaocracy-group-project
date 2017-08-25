@@ -163,6 +163,7 @@ body {
 
 .list-text {
   width: 80%;
+  word-wrap: break-word;
   display: inline-block;
 }
 
