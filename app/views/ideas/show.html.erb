@@ -2,8 +2,10 @@
   <h1 class="text-center"><%= @idea.title %></h1>
   <% if current_user && current_user.id == @idea.user_id %>
     <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id, collaborators: @idea.collaborators) %> |
-  <% end %>
-  <%= link_to 'Collaborate', new_collaborator_path(id: @idea.id) %>
+  <% end %> 
+  <%= link_to 'Collaborate', new_collaborator_path(id: @idea.id), data: { confirm: 'By click this, you agree to put in the collaborators list '} %>
+  <br>
+  <span class="text-left creator-title"><%= link_to @idea.user.username %> </span>
   <p><%= @idea.summary %></p>
   <% if @is_idea_creator %>
     <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>Delete'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>

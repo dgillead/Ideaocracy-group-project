@@ -35,3 +35,4 @@ function onAuthorizeSuccessful() {
   var token = Trello.token();
   window.location.replace("/auth?token=" + token);
 }
+
