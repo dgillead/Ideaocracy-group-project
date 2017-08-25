@@ -1,0 +1,9 @@
+<h1 class="text-center">comments</h1>
+<% if @comments.any? %>
+  <% @comments.each do |comment| %>
+     <p><%= link_to comment.title, comment %></p>
+    <%= comment.created_at %>
+  <% end %>
+<% else %>
+  <p>Not thing yet</p>
+<% end %>
