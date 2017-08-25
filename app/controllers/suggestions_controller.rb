@@ -36,7 +36,6 @@ class SuggestionsController < ApplicationController
       @suggestion.up_votes.push(current_user.id)
     end
     @suggestion.update_attributes(votes: new_votes)
-    redirect_back(fallback_location: root_path)
   end
 
   def down_vote
@@ -48,7 +47,6 @@ class SuggestionsController < ApplicationController
       @suggestion.down_votes.push(current_user.id)
     end
     @suggestion.update_attributes(votes: new_votes)
-    redirect_back(fallback_location: root_path)
   end
 
   private
