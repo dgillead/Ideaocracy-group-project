@@ -5,10 +5,10 @@
   <% end %>
   <%= link_to 'Collaborate', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %>
   <br>
-  <span class="text-left creator-title"><%= link_to @idea.user.username %> </span>
+  <span class="text-left creator-title"><%= @idea.user.username %> </span>
   <p><%= @idea.summary %></p>
   <% if @is_idea_creator %>
-    <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>Delete'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
+    <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
   <% end %>
 </div>
 <div id="suggestion-box" class="center-block">

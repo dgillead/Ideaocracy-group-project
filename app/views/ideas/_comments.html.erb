@@ -14,7 +14,7 @@
   <% suggestion.comments.order(created_at: :desc).each_with_index do |comment, index| %>
       <hr>
       <p id="comment-date" class="text-left"><%= local_time(comment.created_at) %></p>
-      <span class="text-left creator-title"><%= link_to comment.user.username %> </span>
+      <span class="text-left creator-title"><%= comment.user.username %> </span>
       <br>
       <br>
       <p><%= comment.body %></p>
