@@ -1,18 +1,18 @@
 <div id="suggestion-body">
 <span class="text-left creator-title"><%= link_to suggestion.user.username %> </span>
-  <p class="pull-right"> <%= suggestion.votes %> </p>
+  <p class="pull-right" id="vote-count" data-vote-count=<%= suggestion.votes %>> <%= suggestion.votes%> </p>
   <br>
   <p class='text-right'>
     <% if suggestion.up_votes.include?(@user_id) %>
-        <%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe, up_vote_path(suggestion_id: suggestion.id), method: :patch %>
+        <i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true" id="upvote-id"></i>
     <% else %>
-        <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>'.html_safe, up_vote_path(suggestion_id: suggestion.id), method: :patch %>
+        <i class="suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>
     <% end %>
 
     <% if suggestion.down_votes.include?(@user_id) %>
-      <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>
+      <i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>
     <% else %>
-      <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>
+      <i class="suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>
     <% end %>
     <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
     <p class="text-right"><%= local_time(suggestion.created_at) %></p>
@@ -27,3 +27,4 @@
     </p>
   <span><%= suggestion.body %> </span>
 </div>
+

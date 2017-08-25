@@ -35,3 +35,30 @@ function onAuthorizeSuccessful() {
   var token = Trello.token();
   window.location.replace("/auth?token=" + token);
 }
+
+$(document).ready(function () {
+  $('.fa-thumbs-up').on('click', function(e) {
+    e.preventDefault();
+    let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+    let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+    if (voteCount == voteCountDB){
+      voteCount++;
+    }
+    $(this).parent().parent().find('#vote-count').text(voteCount.toString())
+
+    
+  }); 
+});
+
+$(document).ready(function () {
+  $('.fa-thumbs-o-up').on('click', function(e) {
+    e.preventDefault();
+    let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+    let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+    if (voteCount == voteCountDB){
+      voteCount++;
+    }
+    $(this).parent().parent().find('#vote-count').text(voteCount.toString())
+  });
+});
+
