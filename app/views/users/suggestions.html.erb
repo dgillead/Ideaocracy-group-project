@@ -1,9 +1,13 @@
-<h1 class="text-center">Ideas</h1>
-<% if @suggestions.any? %>
-  <% @suggestions.each do |suggestion| %>
-     <p><%= link_to suggestion.title, suggestion %></p>
-    <%= suggestion.created_at %>
+<div class="user-content center-block">
+  <h1 class="text-center">Your Suggestions</h1>
+  <% if @suggestions.any? %>
+    <% @suggestions.each do |suggestion| %>
+      <p><%= suggestion.votes %><span class="pull-right"><%= local_time(suggestion.created_at) %></span></p>
+      <p><%= link_to suggestion.idea.title, suggestion.idea, class: "idea-title" %></p>
+      <p><%= suggestion.body %></p>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>You haven't posted any suggestions yet.</p>
   <% end %>
-<% else %>
-  <p>Not thing yet</p>
-<% end %>
+</div>
