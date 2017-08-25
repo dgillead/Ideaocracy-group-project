@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def suggestions
-    @suggestions = current_user.suggestions.all
+    @suggestions = current_user.suggestions.all.order("votes DESC")
   end
 
   def ideas
@@ -14,7 +14,5 @@ class UsersController < ApplicationController
   def comments
      @comments = current_user.comments.all
   end
-
-  private
 
 end

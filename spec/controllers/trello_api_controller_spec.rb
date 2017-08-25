@@ -43,7 +43,7 @@ RSpec.describe TrelloApiController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'creates a trello board' do
+    xit 'creates a trello board' do
       sign_in(user2)
 
       post :create_board, params: { board: 'Test board', suggestions: ['test suggestion 1', 'test suggestion 2'], collaborators: [user.id, user2.id]}
