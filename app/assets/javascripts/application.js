@@ -40,13 +40,13 @@ $(document).ready(function () {
   $('.fa-thumbs-up').on('click', function(e) {
     e.preventDefault();
     let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+    let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
     let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
     if (voteCount == voteCountDB){
       voteCount++;
+      $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+      jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
     }
-    $(this).parent().parent().find('#vote-count').text(voteCount.toString())
-
-    
   }); 
 });
 
@@ -54,11 +54,12 @@ $(document).ready(function () {
   $('.fa-thumbs-o-up').on('click', function(e) {
     e.preventDefault();
     let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+    let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
     let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
     if (voteCount == voteCountDB){
       voteCount++;
+      $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+      jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
     }
-    $(this).parent().parent().find('#vote-count').text(voteCount.toString())
-  });
+  }); 
 });
-
