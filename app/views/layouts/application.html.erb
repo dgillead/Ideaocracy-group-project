@@ -90,44 +90,65 @@
       </div>
     </div>
   </body>
-   <script type="text/javascript">
-    $(document).ready(function () {
-     $('#sidebarCollapse').on('click', function () {
-         $('#sidebar').toggleClass('active');
-         $(this).toggleClass('active');
-         });
+ <script type="text/javascript">
 
-         $(document).delegate('.thumbs-up', 'click', function(e) {
-           e.preventDefault();
-           let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
-           let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
-           let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
-           if ($(this).attr('class') === 'thumbs-up suggestion-icon fa fa-thumbs-o-up') {
-             $(this).attr('class', "thumbs-up suggestion-icon fa fa-thumbs-up")
-             $(this).siblings('i').attr('class', "thumbs-down suggestion-icon fa fa-thumbs-o-down")
-             voteCount++;
-             $(this).parent().parent().find('#vote-count').text(voteCount.toString());
-             jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
-           }
-         });
+ // thumbs up button
+  $(document).ready(function () {
+   $('#sidebarCollapse').on('click', function () {
+       $('#sidebar').toggleClass('active');
+       $(this).toggleClass('active');
+       });
 
-         $(document).delegate('.thumbs-down', 'click', function(e) {
-           e.preventDefault();
-           let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
-           let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
-           let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
-           if ($(this).attr('class') === 'thumbs-down suggestion-icon fa fa-thumbs-o-down'){
-             $(this).attr('class', "thumbs-down suggestion-icon fa fa-thumbs-down")
-             $(this).siblings('i').attr('class', "thumbs-up suggestion-icon fa fa-thumbs-o-up")
-             voteCount--;
-             $(this).parent().parent().find('#vote-count').text(voteCount.toString());
-             jQuery.ajax({url: `/downvote?suggestion_id=${suggestionId}`, type: 'patch'});
-           }
-         });
-      });
+       $(document).delegate('.thumbs-up', 'click', function(e) {
+         e.preventDefault();
+         let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+         let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
+         let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+         if ($(this).attr('class') === 'thumbs-up suggestion-icon fa fa-thumbs-o-up') {
+           $(this).attr('class', "thumbs-up suggestion-icon fa fa-thumbs-up")
+           $(this).siblings('i').attr('class', "thumbs-down suggestion-icon fa fa-thumbs-o-down")
+           voteCount++;
+           $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+           jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
+         }
+       });
 
+//thumbs down button
+       $(document).delegate('.thumbs-down', 'click', function(e) {
+         e.preventDefault();
+         let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+         let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
+         let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+         if ($(this).attr('class') === 'thumbs-down suggestion-icon fa fa-thumbs-o-down'){
+           $(this).attr('class', "thumbs-down suggestion-icon fa fa-thumbs-down")
+           $(this).siblings('i').attr('class', "thumbs-up suggestion-icon fa fa-thumbs-o-up")
+           voteCount--;
+           $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+           jQuery.ajax({url: `/downvote?suggestion_id=${suggestionId}`, type: 'patch'});
+         }
+       });
+    });
+
+// fade out for alerts
   setTimeout(function(){
     $('.alert').fadeOut();
    }, 5000);
+
+// love it button
+$('.btn-counter').on('click', function(event, count) {
+  event.preventDefault();
+  
+
+  var $this = $(this),
+      count = $this.attr('data-count'),
+      active = $this.hasClass('active'),
+      multiple = $this.hasClass('multiple-count'),
+      ideaId = $this.attr('data-idea-id');
+
+  jQuery.ajax({url: `/love_idea?id=${ideaId}`, type: 'patch'})
+  $.fn.noop = $.noop;
+  $this.attr('data-count', ! active || multiple ? ++count : --count  )[multiple ? 'noop' : 'toggleClass']('active');
+  
+});
    </script>
 </html>

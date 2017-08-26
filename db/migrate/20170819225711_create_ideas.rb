@@ -4,7 +4,7 @@ class CreateIdeas < ActiveRecord::Migration[5.1]
       t.integer :user_id, null: false
       t.text :title, null: false
       t.text :summary, null: false
-      t.integer :votes, default: 1
+      t.integer :loves, array: true, default: []
       t.integer :collaborators, array: true, default: []
       t.timestamps
     end
