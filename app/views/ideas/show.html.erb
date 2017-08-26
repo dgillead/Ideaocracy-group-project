@@ -10,7 +10,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><%= link_to 'Add to list', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %></li>
-    <li><a href="#">Remove from list</a></li>
+    <li><%= link_to 'Remove from list', remove_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are removing from collaborator list. Are you sure?'} %></li>
     <li role="separator" class="divider"></li>
     <% if @idea.collaborators.any? %>
       <% @idea.collaborators.each do |collaborator| %>
