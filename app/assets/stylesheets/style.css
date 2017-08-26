@@ -119,6 +119,10 @@ a:link {
   font-size: 20px;
 }
 
+.btn-margin {
+  margin-top: 5px;
+}
+
 /* Checkbox Style */
 
 .material-switch > input[type="checkbox"] {
