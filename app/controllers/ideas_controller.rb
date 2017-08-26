@@ -49,7 +49,11 @@ class IdeasController < HomeController
   def love_idea
     if !@idea.loves.include?(current_user.id)
       @idea.loves.push(current_user.id)
+    else
+      @idea.loves.delete(current_user.id)
     end
+    @idea.save
+    binding.pry
   end
 
   def new_collaborator

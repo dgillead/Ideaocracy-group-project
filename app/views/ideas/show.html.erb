@@ -7,9 +7,9 @@
   
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
-      <a href="#" title="Love it" class="btn btn-counter active" data-count='<%= @idea.loves.count %>' ><span>&#x2764;</span> Love it</a>
+      <a href="#" title="Love it" class="btn btn-counter active" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</a>
     <% else %>
-      <a href="#" title="Love it" class="btn btn-counter" data-count='<%= @idea.loves.count %>' ><span>&#x2764;</span> Love it</a>
+      <a href="#" title="Love it" class="btn btn-counter" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</a>
     <% end %>
   <% end %>
 

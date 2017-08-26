@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   resources :suggestions, except: [:show, :edit]
   resources :comments, except: [:show, :edit]
 
-  patch '/upvote', to: 'suggestions#up_vote', as: 'up_vote'
-  patch '/downvote', to: 'suggestions#down_vote', as: 'down_vote'
+  patch '/upvote', to: 'suggestions#up_vote'
+  patch '/downvote', to: 'suggestions#down_vote'
+  patch '/love_idea', to: 'ideas#love_idea'
 
   get '/trello', to: 'trello_api#show', as: 'show_boards'
   post '/trello/boards', to: 'trello_api#create_board', as: 'create_board'
