@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def suggestions
-    @suggestions = current_user.suggestions.all.order("votes DESC")
+    @suggestions = Suggestion.where("user_id = ?", current_user.id).order("votes DESC")
   end
 
   def ideas
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def comments
-     @comments = current_user.comments.all
+     @comments = Comment.where("user_id = ?", current_user.id)
   end
 
 end
