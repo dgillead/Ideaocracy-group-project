@@ -7,7 +7,16 @@
       <% ideas.each_with_index do |idea, index| %>
         <tr>
           <td>
-            <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><h5 class="display-4"><%= idea.title %>  <small class="text-muted"><%= local_time(idea.created_at,'%B %e, %Y')%></small></h5>  <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i></div>
+            <div class="panel-heading" data-toggle="collapse" data-target="#idea-summary<%= index %>"><h5 class="display-4"><%= idea.title %>  <small class="text-muted"><%= local_time(idea.created_at,'%B %e, %Y')%></small>
+              <span class="pull-right text-muted">
+                <% if idea.loves.count == 1 %>
+                  <%= idea.loves.count %> person loves this idea.
+                <% else %>
+                  <%= idea.loves.count %> people love this idea.
+                <% end %>
+              </span></h5>
+              <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i>
+            </div>
 
             <div class="collapse panel-body" id="idea-summary<%= index %>" aria-expanded="false"><br><p><%= link_to 'Discuss Idea', idea_path(idea), class: "pull-left" %></p><br><small class="text-muted"><%= idea.summary %></p></small></div>
           </td>

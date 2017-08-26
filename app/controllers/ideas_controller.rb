@@ -8,8 +8,7 @@ class IdeasController < HomeController
   end
 
   def index
-    # @ideas = Idea.all.order(created_at: :desc)
-    @ideas = Idea.paginate(:page => params[:page])
+    @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
   end
 
   def create
