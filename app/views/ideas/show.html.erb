@@ -3,11 +3,27 @@
   <% if current_user && current_user.id == @idea.user_id %>
     <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id, collaborators: @idea.collaborators) %> |
   <% end %>
-  <%= link_to 'Collaborate', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Collaborate <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Add to list', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %></li>
+    <li><a href="#">Remove from list</a></li>
+    <li role="separator" class="divider"></li>
+    <% if @idea.collaborators.any? %>
+      <% @idea.collaborators.each do |collaborator| %>
+      <% collaborator = User.find(collaborator) %>
+      <li><%= link_to collaborator.username%></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
   
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
-      <span title="Love it" class="btn btn-counter active pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</span>
+      <span title="Love it" class="btn btn-btn-counter active pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</span>
     <% else %>
       <span href="#" title="Love it" class="btn btn-counter pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</span>
     <% end %>

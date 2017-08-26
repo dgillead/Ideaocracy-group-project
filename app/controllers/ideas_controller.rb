@@ -67,6 +67,17 @@ class IdeasController < HomeController
     redirect_to @idea
   end
 
+  def new_collaborator
+    if @idea.collaborators.include?(current_user.id)
+      flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
+    else
+      flash[:success] = "Added to collaborators list."
+      @idea.collaborators.push(current_user.id)
+      @idea.save
+    end
+    redirect_to @idea
+  end
+
   private
 
   def authenticate_current_user
