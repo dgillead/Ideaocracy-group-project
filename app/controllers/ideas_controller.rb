@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :new_collaborator]
   before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
@@ -57,25 +57,33 @@ class IdeasController < HomeController
   end
 
   def new_collaborator
-    if @idea.collaborators.include?(current_user.id)
-      flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
+    if current_user
+      if @idea.collaborators.include?(current_user.id)
+        flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
+      else
+        flash[:success] = "Added to collaborators list."
+        @idea.collaborators.push(current_user.id)
+        @idea.save
+      end
     else
-      flash[:success] = "Added to collaborators list."
-      @idea.collaborators.push(current_user.id)
-      @idea.save
+      flash[:error] = "You\'re not sign in, please sign in first"
     end
     redirect_to @idea
   end
 
-  def new_collaborator
-    if @idea.collaborators.include?(current_user.id)
-      flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
+  def delete_collaborator
+    if current_user
+      if @idea.collaborators.include?(current_user.id)
+        flash[:error] = "You\'re not on the list"
+      else
+        flash[:success] = "Removed from collaborators list"
+        @idea.collaborators.delete(current_user.id)
+        @idea.save
+      end
     else
-      flash[:success] = "Added to collaborators list."
-      @idea.collaborators.push(current_user.id)
-      @idea.save
+      flash[:error] = "You\'re not sign in, please sign in first"
     end
-    redirect_to @idea
+      redirect_to @idea
   end
 
   private
