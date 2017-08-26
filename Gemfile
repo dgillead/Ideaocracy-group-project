@@ -36,6 +36,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'local_time'
 gem 'http'
+gem 'will_paginate', '~> 3.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
