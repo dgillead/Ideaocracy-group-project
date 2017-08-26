@@ -211,5 +211,33 @@ RSpec.describe IdeasController, type: :controller do
     end
   end
 
+  describe 'PATCH #love_idea' do
+    it 'increase the love count by 1' do
+      sign_in(user)
+
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(1)
+    end
+
+    it 'will decrease the love count by 1 if you alreay loved it' do
+      sign_in(user)
+
+      patch :love_idea, params: { id: idea1.id }
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(0)
+    end
+
+    it 'will not change the love count if you are not login' do
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(0)
+    end
+  end
+
   DatabaseCleaner.clean
 end

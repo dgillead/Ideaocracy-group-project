@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
 
   def suggestions
-    @suggestions = Suggestion.where("user_id = ?", current_user.id).order("votes DESC")
+    if Suggestion.count <= 30
+      @suggestions = Suggestion.where("user_id = ?", current_user.id).order("votes DESC")
+    else
+      @suggestions = Suggestion.where("user_id = ?", current_user.id).order("votes DESC").paginate(:page => params[:page])
+    end
   end
 
   def ideas
@@ -13,6 +17,10 @@ class UsersController < ApplicationController
   end
 
   def comments
+    if Comment.count <= 30
      @comments = Comment.where("user_id = ?", current_user.id)
+    else
+      @comments = Comment.where("user_id = ?", current_user.id).paginate(:page => params[:page])
+    end 
   end
 end

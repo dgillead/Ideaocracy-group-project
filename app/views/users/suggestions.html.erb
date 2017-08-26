@@ -1,5 +1,10 @@
 <div class="user-content center-block">
   <h1 class="text-center">Your Suggestions</h1>
+  <div class="digg_pagination">
+    <% if @suggestions.count > 30 %>
+      <%= will_paginate @suggestions, :container => false %>
+    <% end %> 
+  </div>
   <% if @suggestions.any? %>
     <% @suggestions.each do |suggestion| %>
       <p><span class="pull-left"><%= local_time(suggestion.created_at) %></span><span class="pull-right"><%= suggestion.votes %></span></p>
@@ -12,4 +17,9 @@
   <% else %>
     <p>You haven't posted any suggestions yet.</p>
   <% end %>
+  <div class="digg_pagination">
+    <% if @suggestions.count > 30 %>
+      <%= will_paginate @suggestions, :container => false %>
+    <% end %> 
+  </div>
 </div>

@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index, :show, :love_idea]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
@@ -8,7 +8,11 @@ class IdeasController < HomeController
   end
 
   def index
-    @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
+    if Idea.count <= 30
+      @ideas = Idea.all.order(created_at: :desc)
+    else
+       @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
+    end
   end
 
   def create
