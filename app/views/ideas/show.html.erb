@@ -4,6 +4,9 @@
     <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id, collaborators: @idea.collaborators) %> |
   <% end %>
   <%= link_to 'Collaborate', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %>
+
+  <a href="#" title="Love it" class="btn btn-counter" data-count="0"><span>&#x2764;</span> Love it</a>
+  
   <br>
   <span class="text-left creator-title"><%= @idea.user.username %> </span>
   <p><%= @idea.summary %></p>
