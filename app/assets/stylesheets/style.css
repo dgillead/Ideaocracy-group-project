@@ -95,6 +95,7 @@ a:link {
 
 .user-content {
   width: 50%;
+  word-wrap: break-word;
 }
 
 .edit-box {

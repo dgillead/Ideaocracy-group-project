@@ -2,7 +2,9 @@
   <h1 class="text-center">Your Suggestions</h1>
   <% if @suggestions.any? %>
     <% @suggestions.each do |suggestion| %>
-      <p><%= suggestion.votes %><span class="pull-right"><%= local_time(suggestion.created_at) %></span></p>
+      <p><span class="pull-left"><%= local_time(suggestion.created_at) %></span><span class="pull-right"><%= suggestion.votes %></span></p>
+      <br>
+      <br>
       <p><%= link_to suggestion.idea.title, suggestion.idea, class: "idea-title" %></p>
       <p><%= suggestion.body %></p>
       <hr>
