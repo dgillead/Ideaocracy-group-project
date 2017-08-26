@@ -1,6 +1,6 @@
 class IdeasController < HomeController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator]
+  before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def new
@@ -44,6 +44,12 @@ class IdeasController < HomeController
   def destroy
     @idea.destroy
     redirect_to ideas_path
+  end
+
+  def love_idea
+    if !@idea.loves.include?(current_user.id)
+      @idea.loves.push(current_user.id)
+    end
   end
 
   def new_collaborator
