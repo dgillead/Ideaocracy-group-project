@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :love_idea]
   before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
@@ -53,7 +53,6 @@ class IdeasController < HomeController
       @idea.loves.delete(current_user.id)
     end
     @idea.save
-    binding.pry
   end
 
   def new_collaborator

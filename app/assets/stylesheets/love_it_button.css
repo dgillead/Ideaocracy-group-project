@@ -17,7 +17,7 @@
 .btn-counter:after,
 .btn-counter:hover:after { text-shadow: none; }
 .btn-counter:after {
-  border-radius: 3px;
+  border-radius: 1px;
   border: 1px solid #d3d3d3;
   background-color: #eee;
   padding: 0 8px;
@@ -55,9 +55,10 @@
 }
 .btn:hover,
 .btn.active {
-  text-shadow: 0 1px 0 #b12f27;
-  background-color: #f64136;
-  border-color: #b12f27;
+  text-shadow: 0 1px 0 #716f6f;
+  background-color: #9a9898;
+  border-color: #191919;
+  color: white !important;
 }
 .btn:active { box-shadow: 0 0 5px 3px rgba(0,0,0,0.2) inset; }
 .btn span { color: #f64136; }

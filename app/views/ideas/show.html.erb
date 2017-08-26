@@ -7,10 +7,12 @@
   
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
-      <a href="#" title="Love it" class="btn btn-counter active" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</a>
+      <span title="Love it" class="btn btn-counter active pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</span>
     <% else %>
-      <a href="#" title="Love it" class="btn btn-counter" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</a>
+      <span href="#" title="Love it" class="btn btn-counter pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</span>
     <% end %>
+  <% else %>
+    <span href="#" title="Love it" class="btn btn-counter pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</span>
   <% end %>
 
   <br>
