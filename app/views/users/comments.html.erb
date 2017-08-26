@@ -1,12 +1,14 @@
 <div class="user-content center-block">
   <h1 class="text-center">Your Comments</h1>
+  <div id="usercomment-body">
   <% if @comments.any? %>
     <% @comments.each do |comment| %>
-       <p><%= link_to comment.suggestion.idea.title, comment.suggestion.idea %><span class="pull-right"><%= local_time(comment.created_at) %></span></p>
+       <p><span class="pull-left"><%= local_time(comment.created_at) %></span><br><br><%= link_to comment.suggestion.idea.title, comment.suggestion.idea %></p>
        <p><%= comment.body %></p>
        <hr>
     <% end %>
   <% else %>
     <p>You haven't posted any comments yet.</p>
   <% end %>
+</div>
 </div>

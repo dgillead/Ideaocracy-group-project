@@ -34,11 +34,11 @@
               <% end %>
 
               <%= link_to show_user_suggestions_path do%>
-               Your suggestions <%= content_tag :span,"#{current_user.suggestions.count}", class:"badge" %>
+               Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
               <% end %>
 
               <%= link_to show_user_comments_path do%>
-               Your comments <%= content_tag :span,"#{current_user.comments.count}", class:"badge" %>
+               Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
               <% end %>
             </ul>
             <% end %>

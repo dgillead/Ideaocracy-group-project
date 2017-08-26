@@ -10,7 +10,6 @@ class IdeasController < HomeController
   def index
     # @ideas = Idea.all.order(created_at: :desc)
     @ideas = Idea.paginate(:page => params[:page])
-
   end
 
   def create
@@ -74,5 +73,4 @@ class IdeasController < HomeController
   rescue ActiveRecord::RecordNotFound
     render 'errors/not_found'
   end
-
 end
