@@ -5,26 +5,28 @@
       <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
       <input type="hidden" name="suggestion_id" value="<%= suggestion.id %>">
       <input type="hidden" name="idea_id" value="<%= @idea.id %>">
-      <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary" %>
+      <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary btn-margin" %>
     </div>
   </form>
 </div>
+
 <div id="comments-container">
   <% suggestion.comments.order(created_at: :desc).each_with_index do |comment, index| %>
       <hr>
-      <span class="text-left creator-title"><%= link_to comment.user.username %> </span>
-      <p id="comment-date" class="text-right"><%= local_time(comment.created_at) %></p>
+      <p id="comment-date" class="text-left"><%= local_time(comment.created_at) %></p>
+      <span class="text-left creator-title"><%= comment.user.username %> </span>
+      <br>
+      <br>
       <p><%= comment.body %></p>
       <div>
         <% if comment.user_id == @user_id %>
         <div class="collapse" id="edit-comment<%= comment.id %><%= index %>" aria-hidden="false">
           <%= render 'edit_comment', { comment: comment } %>
         </div>
-        <span class="pull-right" data-toggle="collapse" data-target="#edit-comment<%= comment.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> | 
+        <span class="pull-right" data-toggle="collapse" data-target="#edit-comment<%= comment.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> |
         <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, comment, data: { confirm: 'Are you sure?' }, method: :delete %></span>
         <% end %>
       </div>
       <hr>
   <% end %>
 </div>
-

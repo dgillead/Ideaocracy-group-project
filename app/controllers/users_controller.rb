@@ -4,17 +4,15 @@ class UsersController < ApplicationController
   end
 
   def suggestions
-    @suggestions = current_user.suggestions.all
+    @suggestions = Suggestion.where("user_id = ?", current_user.id).order("votes DESC")
   end
 
   def ideas
-     @ideas = current_user.ideas.all
+    @ideas = current_user.ideas.paginate(:page => params[:page])
   end
 
   def comments
-     @comments = current_user.comments.all
+     @comments = Comment.where("user_id = ?", current_user.id)
   end
-
-  private
 
 end

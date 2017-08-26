@@ -1,29 +1,28 @@
 <div id="suggestion-body">
-<span class="text-left creator-title"><%= link_to suggestion.user.username %> </span>
-  <p class="pull-right"> <%= suggestion.votes %> </p>
-  <br>
-  <p class='text-right'>
-    <% if suggestion.up_votes.include?(@user_id) %>
-        <%= link_to '<i class="suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>'.html_safe, up_vote_path(suggestion_id: suggestion.id), method: :patch %>
-    <% else %>
-        <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>'.html_safe, up_vote_path(suggestion_id: suggestion.id), method: :patch %>
-    <% end %>
-
-    <% if suggestion.down_votes.include?(@user_id) %>
-      <%= link_to '<i class="suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>
-    <% else %>
-      <%= link_to '<i class="suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>'.html_safe, down_vote_path(suggestion_id: suggestion.id), method: :patch  %>
-    <% end %>
-    <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
-    <p class="text-right"><%= local_time(suggestion.created_at) %></p>
-
+    <p class="text-left"><%= local_time(suggestion.created_at) %><span class="pull-right" id="vote-count" data-vote-count=<%= suggestion.votes %> data-suggestion-id=<%= suggestion.id %>><%= suggestion.votes %> </span></p>
+    <span class="text-left creator-title"><%= suggestion.user.username %></span>
+      <span class="pull-right">
+        <% if suggestion.up_votes.include?(@user_id) %>
+            <i class="thumbs-up suggestion-icon fa fa-thumbs-up" aria-hidden="true"></i>
+        <% else %>
+            <i class="thumbs-up suggestion-icon fa fa-thumbs-o-up" aria-hidden="true"></i>
+        <% end %>
+        <% if suggestion.down_votes.include?(@user_id) %>
+          <i class="thumbs-down suggestion-icon fa fa-thumbs-down" aria-hidden="true"></i>
+        <% else %>
+          <i class="thumbs-down suggestion-icon fa fa-thumbs-o-down" aria-hidden="true"></i>
+        <% end %>
+        <span data-toggle="collapse" data-target="#comment-box<%= index %>"><i class="suggestion-icon fa fa-commenting-o"></i></span>
+      </span>
+      <br>
+      <br>
+    <span><%= suggestion.body %> </span>
     <% if suggestion.user_id == @user_id %>
     <div class="collapse" id="edit-suggestion<%= suggestion.id %><%= index %>" aria-hidden="false">
       <%= render 'edit_suggestion', { suggestion: suggestion } %>
     </div>
     <p class="text-right" data-toggle="collapse" data-target="#edit-suggestion<%= suggestion.id %><%= index %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> |
       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, suggestion, data: { confirm: 'Are you sure?' }, method: :delete %></p>
-    <% end %>
-    </p>
-  <span><%= suggestion.body %> </span>
-</div>
+      <% end %>
+  </div>
+

@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170819230543) do
     t.integer "user_id", null: false
     t.text "title", null: false
     t.text "summary", null: false
-    t.integer "votes", default: 1
+    t.integer "loves", default: [], array: true
     t.integer "collaborators", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

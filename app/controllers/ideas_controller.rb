@@ -1,6 +1,6 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator]
+  before_action :authenticate_user!, except: [:index, :show, :love_idea]
+  before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
   def new
@@ -8,7 +8,8 @@ class IdeasController < HomeController
   end
 
   def index
-    @ideas = Idea.all.order(created_at: :desc)
+    # @ideas = Idea.all.order(created_at: :desc)
+    @ideas = Idea.paginate(:page => params[:page])
   end
 
   def create
@@ -46,6 +47,15 @@ class IdeasController < HomeController
     redirect_to ideas_path
   end
 
+  def love_idea
+    if !@idea.loves.include?(current_user.id)
+      @idea.loves.push(current_user.id)
+    else
+      @idea.loves.delete(current_user.id)
+    end
+    @idea.save
+  end
+
   def new_collaborator
     if @idea.collaborators.include?(current_user.id)
       flash[:error] = "You\'ve already indicated you would like to collaborate on this idea."
@@ -72,5 +82,4 @@ class IdeasController < HomeController
   rescue ActiveRecord::RecordNotFound
     render 'errors/not_found'
   end
-
 end

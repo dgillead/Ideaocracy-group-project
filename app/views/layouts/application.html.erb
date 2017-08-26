@@ -14,94 +14,141 @@
 
   <body>
     <div class="wrapper">
-    <!-- Sidebar Holder -->
-  <nav id="sidebar" class="active">
-    <div class="sidebar-header">
-        <h3>Ideaocracy</h3>
-    </div>
-    <ul class="list-unstyled components">
-      <li class="active">
-        <a href="/ideas">Home</a>
-      </li>
-      <li>
-        <a href="#">About</a>
-        <% if current_user %>
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">View History</a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-
-          <%= link_to show_user_ideas_path do%>
-           Your deas <%= content_tag :span,"#{current_user.ideas.count}",class:"badge" %>
-          <% end %>
-
-          <%= link_to show_user_suggestions_path do%>
-           Your suggestions <%= content_tag :span,"#{current_user.suggestions.count}",class:"badge" %>
-          <% end %>
-
-          <%= link_to show_user_comments_path do%>
-           Your comments <%= content_tag :span,"#{current_user.comments.count}",class:"badge" %>
-          <% end %>
-        </ul>
-        <% end %>
-      </li>
-      <li>
-        <a href="#">Portfolio</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li>
-    </ul>
-    <% if current_user %>
-      <%=link_to '<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>'.html_safe, show_user_path %> <%= link_to '<i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>'.html_safe, destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Register', new_user_registration_path %> <%= link_to 'Login', new_user_session_path %>
-    <% end %>
-  </nav>
-    <!-- Page Content Holder -->
-  <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" id="sidebarCollapse" class="navbar-btn active">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <!-- Sidebar Holder -->
+      <nav id="sidebar" class="active">
+        <div class="sidebar-header">
+            <h3>Ideaocracy</h3>
         </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/ideas">Home</a></li>
-          <li><a href="/ideas/new">Share idea</a></li>
-        <% if current_user %>
-          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
-        <% else %>
-          <li> <%= link_to 'Register', new_user_registration_path %> </li>
-          <li> <%= link_to 'Login', new_user_session_path %> </li>  
-        <% end %>
+        <ul class="list-unstyled components">
+          <li class="active">
+            <a href="/ideas">Home</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+            <% if current_user %>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Your Post History</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+
+              <%= link_to show_user_ideas_path do%>
+               Your ideas <%= content_tag :span,"#{current_user.ideas.count}", class:"badge" %>
+              <% end %>
+
+              <%= link_to show_user_suggestions_path do%>
+               Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
+              <% end %>
+
+              <%= link_to show_user_comments_path do%>
+               Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
+              <% end %>
+            </ul>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to 'Account Settings',  edit_user_registration_path %>
+          </li>
         </ul>
+        <div class="text-center">
+          <% if current_user %>
+            <%=link_to '<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>'.html_safe, show_user_path %> <%= link_to '<i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>'.html_safe, destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Register', new_user_registration_path %> <%= link_to 'Login', new_user_session_path %>
+          <% end %>
+        </div>
+      </nav>
+        <!-- Page Content Holder -->
+      <div id="content">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" id="sidebarCollapse" class="navbar-btn active">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/ideas">Home</a></li>
+              <li><a href="/ideas/new">Share idea</a></li>
+            <% if current_user %>
+              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li> <%= link_to 'Register', new_user_registration_path %> </li>
+              <li> <%= link_to 'Login', new_user_session_path %> </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- Flash messages -->
+       <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+              <%= value %>
+        </div>
+       <% end %>
+       <%= yield %>
       </div>
     </div>
-  </nav>
-<!-- Flash messages -->
-   <% flash.each do |key, value| %>
-    <div class="<%= flash_class(key) %>">
-          <%= value %>
-    </div>
-   <% end %>
-    <%= yield %>
-  </div>
-  </div>
   </body>
-   <script type="text/javascript">
-    $(document).ready(function () {
-     $('#sidebarCollapse').on('click', function () {
-         $('#sidebar').toggleClass('active');
-         $(this).toggleClass('active');
-         });
-      });
+ <script type="text/javascript">
 
-    setTimeout(function(){
+ // thumbs up button
+  $(document).ready(function () {
+   $('#sidebarCollapse').on('click', function () {
+       $('#sidebar').toggleClass('active');
+       $(this).toggleClass('active');
+       });
+
+       $(document).delegate('.thumbs-up', 'click', function(e) {
+         e.preventDefault();
+         let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+         let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
+         let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+         if ($(this).attr('class') === 'thumbs-up suggestion-icon fa fa-thumbs-o-up') {
+           $(this).attr('class', "thumbs-up suggestion-icon fa fa-thumbs-up")
+           $(this).siblings('i').attr('class', "thumbs-down suggestion-icon fa fa-thumbs-o-down")
+           voteCount++;
+           $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+           jQuery.ajax({url: `/upvote?suggestion_id=${suggestionId}`, type: 'patch'});
+         }
+       });
+
+//thumbs down button
+       $(document).delegate('.thumbs-down', 'click', function(e) {
+         e.preventDefault();
+         let voteCountDB = $(this).parent().parent().find('#vote-count').attr('data-vote-count')
+         let suggestionId = $(this).parent().parent().find('#vote-count').attr('data-suggestion-id');
+         let voteCount = parseInt($(this).parent().parent().find('#vote-count').text(), 10);
+         if ($(this).attr('class') === 'thumbs-down suggestion-icon fa fa-thumbs-o-down'){
+           $(this).attr('class', "thumbs-down suggestion-icon fa fa-thumbs-down")
+           $(this).siblings('i').attr('class', "thumbs-up suggestion-icon fa fa-thumbs-o-up")
+           voteCount--;
+           $(this).parent().parent().find('#vote-count').text(voteCount.toString());
+           jQuery.ajax({url: `/downvote?suggestion_id=${suggestionId}`, type: 'patch'});
+         }
+       });
+    });
+
+// fade out for alerts
+  setTimeout(function(){
     $('.alert').fadeOut();
    }, 5000);
 
+// love it button
+$('.btn-counter').on('click', function(event, count) {
+  event.preventDefault();
+  
+
+  var $this = $(this),
+      count = $this.attr('data-count'),
+      active = $this.hasClass('active'),
+      multiple = $this.hasClass('multiple-count'),
+      ideaId = $this.attr('data-idea-id');
+
+  jQuery.ajax({url: `/love_idea?id=${ideaId}`, type: 'patch'})
+  $.fn.noop = $.noop;
+  $this.attr('data-count', ! active || multiple ? ++count : --count  )[multiple ? 'noop' : 'toggleClass']('active');
+  
+});
    </script>
 </html>
