@@ -2,7 +2,7 @@ class SuggestionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :authenticate_user!
   before_action :find_idea, only: [:create]
-  before_action :find_suggestion, only: [:up_vote, :down_vote]
+  before_action :find_suggestion, only: [:up_vote, :down_vote, :vote_count]
   before_action :find_suggestion_id, only: [:update, :destroy]
   before_action :authenticate_current_user, only: [:update, :destroy]
 
@@ -47,6 +47,10 @@ class SuggestionsController < ApplicationController
       @suggestion.down_votes.push(current_user.id)
     end
     @suggestion.update_attributes(votes: new_votes)
+  end
+
+  def vote_count
+    return @suggestion.up_votes
   end
 
   private
