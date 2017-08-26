@@ -95,6 +95,7 @@ a:link {
 
 .user-content {
   width: 50%;
+  word-wrap: break-word;
 }
 
 .edit-box {
@@ -116,6 +117,10 @@ a:link {
 
 .idea-title {
   font-size: 20px;
+}
+
+.btn-margin {
+  margin-top: 5px;
 }
 
 /* Checkbox Style */

@@ -1,6 +1,6 @@
 5.times do
   User.create!(email: Faker::Internet.email, password: '123456', username: Faker::Name.last_name, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-end 
+end
 
   User.create!(email:'sw02102@gmail.com', password: '123456', username: 'dfsfs', first_name: 'jin', last_name: 'sdfsdf')
 
@@ -9,6 +9,7 @@ users = User.all
 users.each do |user|
   rand(1..3).times do
     user.ideas.create!(title: Faker::Hipster.sentence, summary: "#{Faker::Hipster.paragraphs[0]}#{Faker::Hipster.paragraphs[0]}", collaborators: [1,2,3,4,5], loves: [1,2,3,4,5])
+
   end
 end
 
