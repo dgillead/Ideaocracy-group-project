@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :user_suggestions ]
+  before_action :authenticate_user!, only: [:suggestions, :ideas, :comments]
+  
   def index
   end
 
@@ -22,5 +23,4 @@ class UsersController < ApplicationController
       @comments = Comment.where("user_id = ?", current_user.id).paginate(:page => params[:page])
     end 
   end
-
 end
