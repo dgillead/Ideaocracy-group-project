@@ -211,6 +211,67 @@ RSpec.describe IdeasController, type: :controller do
     end
   end
 
+  describe 'GET #new_collaborator' do
+    it 'add the user to collaborator list when user sign in' do
+      sign_in(user)
+
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(1)
+      expect(response.code).to eq('302')
+    end
+
+    it 'will not add the user to collaborator list when not sign in' do
+
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(0)
+    end
+
+    it 'will not add the user to collaborator list when user already on the list' do
+      sign_in(user)
+
+      get :new_collaborator, params: {id: idea1.id}
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(1)
+    end
+  end
+
+  describe 'GET #delete_collaborator' do
+    let(:idea3) { Idea.create!(title: 'Idea3 title', summary: 'Idea3 summary', user_id: user.id, collaborators: [user.id]) }
+    it 'will not remove the user to collaborator list when not sign in' do
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(1)
+    end
+
+    it 'remove the user to collaborator list when user sign in' do
+      sign_in(user)
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(0)
+      expect(response.code).to eq('302')
+    end
+
+
+    it 'will not add the user to collaborator list when user not on the list' do
+      sign_in(user2)
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(1)
+    end
+  end
+
   describe 'PATCH #love_idea' do
     it 'increase the love count by 1' do
       sign_in(user)

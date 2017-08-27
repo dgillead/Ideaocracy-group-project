@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/auth', to: 'trello_api#get_token'
   get '/trello/new', to: 'trello_api#new', as: 'new_trello'
   get '/collaborate/new', to: 'ideas#new_collaborator', as: 'new_collaborator'
+  get '/collaborate/delete', to: 'ideas#delete_collaborator', as: 'remove_collaborator'
 
   get '/users/index', to: 'users#index', as: 'show_user'
   get '/users/ideas', to: 'users#ideas', as: 'show_user_ideas'
