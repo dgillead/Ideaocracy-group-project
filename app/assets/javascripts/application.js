@@ -21,7 +21,7 @@
 function authenticateTrello() {
   localStorage.removeItem('trello_token');
   Trello.authorize({
-    name: "YourApplication",
+    name: "Ideaocracy",
     type: "popup",
     interactive: true,
     expiration: "never",

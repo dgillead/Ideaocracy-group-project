@@ -20,7 +20,7 @@ class TrelloApiController < ApplicationController
 
   def create_board
     Trello.configure do |trello|
-      trello.developer_public_key = Rails.application.secrets.trello_api_key
+      trello.developer_public_key = ENV['trello_key']
       trello.member_token = current_user.trello
     end
     board = Trello::Board.create(name: params[:board])
