@@ -1,5 +1,6 @@
 <div class="center-block" id="idea-container">
   <h1 class="text-center"><%= @idea.title %></h1>
+  <%= social_share_button_tag("Check out my idea on Ideaocracy!") %>
   <% if current_user && current_user.id == @idea.user_id %>
     <%= link_to 'Create Trello Board', new_trello_path(idea_id: @idea.id, collaborators: @idea.collaborators) %> |
   <% end %>
@@ -20,8 +21,6 @@
     <% end %>
   </ul>
 </div>
-
-<%= social_share_button_tag(@idea.title) %>
 
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
