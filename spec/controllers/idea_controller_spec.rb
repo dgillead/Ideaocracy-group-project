@@ -298,6 +298,25 @@ RSpec.describe IdeasController, type: :controller do
 
       expect(idea1.loves.count).to eq(0)
     end
+
+    it 'add to uers love list' do
+      sign_in(user)
+
+      patch :love_idea, params: {id: idea1.id}
+      user.reload
+
+      expect(user.loves).to eq([idea1.id])
+    end
+
+    it 'removes from users love list' do
+      sign_in(user)
+
+      patch :love_idea, params: {id: idea1.id}
+      patch :love_idea, params: {id: idea1.id}
+      user.reload
+
+      expect(user.loves).to eq([])
+    end
   end
 
   DatabaseCleaner.clean
