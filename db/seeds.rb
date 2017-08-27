@@ -7,7 +7,7 @@ end
 users = User.all
 
 users.each do |user|
-  rand(1..3).times do
+  50.times do
     user.ideas.create!(title: Faker::Hipster.sentence, summary: "#{Faker::Hipster.paragraphs[0]}#{Faker::Hipster.paragraphs[0]}", collaborators: [1,2,3,4,5], loves: [1,2,3,4,5])
 
   end
