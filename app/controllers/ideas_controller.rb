@@ -8,8 +8,11 @@ class IdeasController < HomeController
   end
 
   def index
-    # @ideas = Idea.all.order(created_at: :desc)
-    @ideas = Idea.paginate(:page => params[:page])
+    if Idea.count <= 30
+      @ideas = Idea.all.order(created_at: :desc)
+    else
+       @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
+    end
   end
 
   def create
