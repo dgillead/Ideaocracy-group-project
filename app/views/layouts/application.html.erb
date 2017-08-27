@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://trello.com/1/client.js?key=<%= Rails.application.secrets.trello_api_key %>"></script>
+    <script src="https://trello.com/1/client.js?key=<%= ENV['trello_key'] %>"></script>
   </head>
 
   <body>
