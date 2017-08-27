@@ -26,19 +26,23 @@
           <li>
             <a href="#">About</a>
             <% if current_user %>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Your Post History</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">History</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
 
-              <%= link_to show_user_ideas_path do%>
-               Your ideas <%= content_tag :span,"#{current_user.ideas.count}", class:"badge" %>
-              <% end %>
+                <%= link_to show_user_ideas_path do%>
+                 Your ideas <%= content_tag :span,"#{current_user.ideas.count}", class:"badge" %>
+                <% end %>
 
-              <%= link_to show_user_suggestions_path do%>
-               Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
-              <% end %>
+                <%= link_to show_user_suggestions_path do%>
+                 Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <% end %>
 
-              <%= link_to show_user_comments_path do%>
-               Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <%= link_to show_user_comments_path do%>
+                 Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <% end %>
+
+                <%= link_to show_user_loves_path do%>
+                 Ideas you love <%= content_tag :span,"#{current_user.loves.count}", class:"badge" %>
               <% end %>
             </ul>
             <% end %>
@@ -137,7 +141,7 @@
 // love it button
 $('.btn-counter').on('click', function(event, count) {
   event.preventDefault();
-  
+
 
   var $this = $(this),
       count = $this.attr('data-count'),
@@ -148,7 +152,7 @@ $('.btn-counter').on('click', function(event, count) {
   jQuery.ajax({url: `/love_idea?id=${ideaId}`, type: 'patch'})
   $.fn.noop = $.noop;
   $this.attr('data-count', ! active || multiple ? ++count : --count  )[multiple ? 'noop' : 'toggleClass']('active');
-  
+
 });
    </script>
 </html>
