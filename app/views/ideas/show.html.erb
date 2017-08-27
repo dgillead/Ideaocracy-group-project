@@ -30,7 +30,7 @@
   <% end %>
 
   <br>
-  <span class="text-left creator-title"><%= @idea.user.username %> </span>
+  <span class="text-left creator-title"><i class="fa fa-user" aria-hidden="true"></i><%= @idea.user.username %> </span>
   <p><%= @idea.summary %></p>
   <% if @is_idea_creator %>
     <p class="text-right"><%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, edit_idea_path(@idea) %> | <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, @idea, data:{confirm: 'Are you sure?'}, method: :delete %></p>
