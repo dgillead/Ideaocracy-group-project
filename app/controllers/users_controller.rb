@@ -23,4 +23,11 @@ class UsersController < ApplicationController
       @comments = Comment.where("user_id = ?", current_user.id).paginate(:page => params[:page])
     end 
   end
+
+  def loves
+    @ideas = Idea.where(id: current_user.loves)
+    if @ideas.count >= 30
+      @ideas = @ideas.paginate(:page => params[:page])
+    end
+  end
 end
