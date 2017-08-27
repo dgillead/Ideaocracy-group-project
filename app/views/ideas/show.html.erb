@@ -20,6 +20,8 @@
     <% end %>
   </ul>
 </div>
+
+<%= social_share_button_tag("My Site") %>
   
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
