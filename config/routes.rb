@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/users/ideas', to: 'users#ideas', as: 'show_user_ideas'
   get '/users/suggestions', to: 'users#suggestions', as: 'show_user_suggestions'
   get '/users/comments', to: 'users#comments', as: 'show_user_comments'
+  get '/users/loves', to: 'users#loves', as:'show_user_loves'
 
   get '/suggestions/vote_count', to: 'suggestions#vote_count'
 
