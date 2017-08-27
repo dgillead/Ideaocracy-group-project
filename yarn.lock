@@ -2,3 +2,6 @@
 # yarn lockfile v1
 
 
+procfile@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/procfile/-/procfile-0.1.1.tgz#7393f5ac171b13213143b355373cc690b058b22f"

@@ -20,7 +20,7 @@ class TrelloApiController < ApplicationController
 
   def create_board
     Trello.configure do |trello|
-      trello.developer_public_key = Rails.application.secrets.trello_api_key
+      trello.developer_public_key = ENV['trello_key']
       trello.member_token = current_user.trello
     end
     board = Trello::Board.create(name: params[:board])
@@ -34,7 +34,7 @@ class TrelloApiController < ApplicationController
     if params[:collaborators]
       params[:collaborators].each do |collaborator|
         user = User.find(collaborator)
-        HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{Rails.application.secrets.trello_api_key}&token=#{board.client.member_token}")
+        HTTP.put("https://api.trello.com/1/boards/#{board.id}/members?email=#{user.email}&key=#{ENV['trello_key']}&token=#{board.client.member_token}")
       end
     end
     render :success

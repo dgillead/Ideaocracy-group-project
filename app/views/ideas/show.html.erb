@@ -11,7 +11,7 @@
   <ul class="dropdown-menu">
     <li><%= link_to 'Add to list', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %></li>
     <li><%= link_to 'Remove from list', remove_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are removing from collaborator list. Are you sure?'} %></li>
-    <li role="separator" class="divider"></li>
+    <li class="text-divider"><span>Collaborators</span></li>
     <% if @idea.collaborators.any? %>
       <% @idea.collaborators.each do |collaborator| %>
       <% collaborator = User.find(collaborator) %>
@@ -22,15 +22,13 @@
 </div>
 
 <%= social_share_button_tag(@idea.title) %>
-  
+
   <% if current_user %>
     <% if @idea.loves.include?(current_user.id) %>
       <span title="Love it" class="btn btn-counter active pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>" ><span>&#x2764;</span> Love it</span>
     <% else %>
       <span href="#" title="Love it" class="btn btn-counter pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</span>
     <% end %>
-  <% else %>
-    <span href="#" title="Love it" class="btn btn-counter pull-right" data-count="<%= @idea.loves.count %>" data-idea-id="<%= @idea.id %>"><span>&#x2764;</span> Love it</span>
   <% end %>
 
   <br>
