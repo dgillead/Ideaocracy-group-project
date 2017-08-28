@@ -101,6 +101,10 @@ a:link {
   display: inline-block;
 }
 
+#trello-container {
+  width: 80%;
+}
+
 .user-content {
   width: 50%;
   word-wrap: break-word;
