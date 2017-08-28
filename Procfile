@@ -1,2 +1,2 @@
 rails s
-brew services start elasticsearch
+sudo service elasticsearch start
