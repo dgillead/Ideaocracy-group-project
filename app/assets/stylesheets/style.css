@@ -7,10 +7,28 @@ a:link {
   text-decoration: underline;
 }
 
+ul li{
+  font-family: 'Maven Pro', sans-serif;
+  color: black;
+  font-size: 1.3em;
+  display: inline;
+  margin-left: 5%;
+  text-align: center;
+}
+
 #title {
   font-family: 'Maven Pro', sans-serif;
   color: black;
 }
+
+#about-text {
+  font-family: Sans-serif;
+  color: black;
+  width: 90%;
+  margin-left: 5%;
+  text-align: auto;
+}
+
 
 #submit-idea-container {
   width: 50%;
