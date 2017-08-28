@@ -20,14 +20,15 @@ class User < ApplicationRecord
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user_attributes = params
-        user.valid?     
+        user.valid?  
+      end   
     else
       super
     end
   end
 
   def password_required?
-    super && provider.blank
+    super && provider.blank?
   end
 
   def update_with_password(params, *options)
