@@ -1,0 +1,28 @@
+<body id="background">
+  <div class="jumbotron" id="intro-container">
+    <h2 class="text-center" id="about-us">Welcome to Idea<em>Ocracy</em>!</h2>
+    <hr />
+    <h3 class="text-center" id="about-text"> The site where users can post their great ideas, make idea suggestions, offer comments, choose to collaborate on further development of those ideas, and share these ideas on <em>Google+</em> in addition to email, Twitter, or LinkedIn. Check out the collection of fantastic ideas shared by our community here:</h3>
+    <div class="text-center">
+      <%= button_to 'View Ideas', ideas_path, method: :get, class: "btn btn-success intro-buttons" %>
+    </div>
+    <h3 class="text-center" id="about-text">Have a new idea and need to get some feedback? Or want to reach out to others to have them help you make your concept become a reality? Post it here!
+    </h3>
+    <div class="text-center">
+      <%= button_to 'Create Idea', new_idea_path, method: :get, class: "btn btn-info intro-buttons" %>
+    </div>
+    <h2 class="text-center" id="about-text">About our team:
+    </h2>
+    <h3 class="text-center" id="about-text">We are a group of software engineers dedicated to helping society through the open dissemination of innovative ideas. 
+    </h3>
+    <ul class="team">
+      <li>Jin&nbspCheng</li>
+      <li>Darnell&nbspGillead</li>
+      <li>Robert&nbspGonzalez</li>
+      <li>Arthur&nbspMiguel</li>
+      <li>James&nbspSmith</li>
+    </ul> 
+  </div>
+
+  <%= social_share_button_tag("Have an idea? Post it here!") %>
+</body>

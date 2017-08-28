@@ -29,5 +29,7 @@ Rails.application.routes.draw do
 
   get '/suggestions/vote_count', to: 'suggestions#vote_count'
 
+  get '/about', to: 'home#about'
+
   get '*unmatched_route', to: 'errors#not_found'
 end
