@@ -6,20 +6,24 @@
   <% end %>
 
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Collaborate <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'Add to list', new_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are indicating that you would like to work on this idea in the future. Are you sure?'} %></li>
-    <li><%= link_to 'Remove from list', remove_collaborator_path(id: @idea.id), data: { confirm: 'By clicking this, you are removing from collaborator list. Are you sure?'} %></li>
-    <li class="text-divider"><span>Collaborators</span></li>
-    <% if @idea.collaborators.any? %>
-      <% @idea.collaborators.each do |collaborator| %>
-        <% collaborator = User.find(collaborator) %>
-        <li><%= collaborator.username%></li>
+  <% if current_user %>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Collaborate <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><%= link_to 'Add self to list', new_collaborator_path(id: @idea.id) %></li>
+      <% if @idea.collaborators.include?(current_user.id) %>
+        <li><%= link_to 'Remove self from list', remove_collaborator_path(id: @idea.id) %></li>
       <% end %>
-    <% end %>
-  </ul>
+      <li class="text-divider"><span>Collaborators</span></li>
+      <% if @idea.collaborators.any? %>
+        <% @idea.collaborators.each do |collaborator| %>
+          <% collaborator = User.find(collaborator) %>
+          <li><%= collaborator.username%></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
   <% if current_user %>
