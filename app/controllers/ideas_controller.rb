@@ -72,7 +72,7 @@ class IdeasController < HomeController
         @idea.save
       end
     else
-      flash[:error] = "You\'re not sign in, please sign in first"
+      flash[:error] = "You\'re not signed in, please sign in first"
     end
     redirect_to @idea
   end
