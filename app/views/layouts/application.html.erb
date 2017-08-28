@@ -17,11 +17,11 @@
         <!-- Sidebar Holder -->
       <nav id="sidebar" class="active">
         <div class="sidebar-header">
-            <h3>Ideaocracy</h3>
+            <a href="/"><h3>Ideaocracy</h3></a>
         </div>
         <ul class="list-unstyled components">
           <li class="active">
-            <a href="/ideas">Home</a>
+            <a href="/ideas">Ideas</a>
           </li>
           <li>
             <a href="#">About</a>
@@ -74,7 +74,7 @@
             </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="nav navbar-nav navbar-right container borderXwidth">
-              <a href="/ideas">Home</a>
+              <a href="/ideas">Ideas</a>
               <a href="/ideas/new">Post idea</a>
             <% if current_user %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>

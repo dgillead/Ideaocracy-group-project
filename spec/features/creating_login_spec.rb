@@ -14,7 +14,7 @@ RSpec.feature 'login', :type => :feature do
       end
 
       expect(page).to have_link 'Login'
-      expect(page).to have_link 'Home'
+      expect(page).to have_link 'Ideas'
       expect(page).to have_link 'Register'
       expect(page).to have_content 'Ideaocracy'
     end

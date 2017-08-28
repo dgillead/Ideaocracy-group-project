@@ -18,7 +18,7 @@ RSpec.feature 'register', :type => :feature do
       end
 
       expect(page).to have_content 'Login'
-      expect(page).to have_content 'Home'
+      expect(page).to have_content 'Ideas'
       expect(page).to have_content 'Register'
       expect(page).to have_content 'Ideaocracy'
     end
