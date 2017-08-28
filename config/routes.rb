@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :suggestions, except: [:show, :edit]
   resources :comments, except: [:show, :edit]
 
+  get '/search', to: 'ideas#search_tags'
+
   patch '/upvote', to: 'suggestions#up_vote'
   patch '/downvote', to: 'suggestions#down_vote'
   patch '/love_idea', to: 'ideas#love_idea'
