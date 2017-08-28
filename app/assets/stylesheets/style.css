@@ -51,10 +51,6 @@ a:link {
   word-wrap: break-word;
 }
 
-.idea-field {
-  width: 60%;
-}
-
 #idea-summary {
   height: 150px;
 }
@@ -96,6 +92,15 @@ a:link {
   margin-top: 5px;
 }
 
+#idea-search {
+  width: 50%;
+}
+
+#idea-search input {
+  width: 80%;
+  display: inline-block;
+}
+
 .user-content {
   width: 50%;
   word-wrap: break-word;
@@ -124,6 +129,10 @@ a:link {
 
 .btn-margin {
   margin-top: 5px;
+}
+
+.idea-field {
+  width: 60%;
 }
 
 /* Checkbox Style */
