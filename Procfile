@@ -1,2 +1,2 @@
-rails s
-brew services start elasticsearch
+elasticsearch: elasticsearch -f
+web: bundle exec rails s
