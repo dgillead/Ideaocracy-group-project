@@ -48,7 +48,9 @@
             <% end %>
           </li>
           <li>
-            <%= link_to 'Account Settings',  edit_user_registration_path %>
+            <% if current_user %>
+              <%= link_to 'Account Settings',  edit_user_registration_path %>
+            <% end %>
           </li>
         </ul>
         <div class="text-center">
@@ -73,12 +75,12 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="nav navbar-nav navbar-right container borderXwidth">
               <a href="/ideas">Home</a>
-              <a href="/ideas/new">Share idea</a>
+              <a href="/ideas/new">Post idea</a>
             <% if current_user %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             <% else %>
-               <%= link_to 'Register', new_user_registration_path %> 
-               <%= link_to 'Login', new_user_session_path %> 
+               <%= link_to 'Register', new_user_registration_path %>
+               <%= link_to 'Login', new_user_session_path %>
             <% end %>
             </div>
           </div>

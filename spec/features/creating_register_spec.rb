@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'register', :type => :feature do 
+RSpec.feature 'register', :type => :feature do
   describe "the register process"
     before :each do
       User.create(email: 'user@example.com', first_name: 'Jon', last_name: 'Young', username: 'lilJon', password: 'password', password_confirmation: 'password')
@@ -21,6 +21,5 @@ RSpec.feature 'register', :type => :feature do
       expect(page).to have_content 'Home'
       expect(page).to have_content 'Register'
       expect(page).to have_content 'Ideaocracy'
-      expect(page).to have_content 'Setting'
     end
 end
