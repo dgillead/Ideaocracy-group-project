@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = @suggestion.comments.new(comment_params)
     @comment[:user_id] = current_user.id
     if @comment.save
-      redirect_to @idea
+      redirect_to idea_path(@idea, anchor: "#{@suggestion.id}")
     end
   end
 

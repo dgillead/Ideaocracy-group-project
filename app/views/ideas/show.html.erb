@@ -15,8 +15,8 @@
     <li class="text-divider"><span>Collaborators</span></li>
     <% if @idea.collaborators.any? %>
       <% @idea.collaborators.each do |collaborator| %>
-      <% collaborator = User.find(collaborator) %>
-      <li><%= link_to collaborator.username%></li>
+        <% collaborator = User.find(collaborator) %>
+        <li><%= collaborator.username%></li>
       <% end %>
     <% end %>
   </ul>

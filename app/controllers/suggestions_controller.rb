@@ -10,7 +10,7 @@ class SuggestionsController < ApplicationController
     @suggestion = @idea.suggestions.new(suggestion_params)
     @suggestion[:user_id] = current_user.id
     if @suggestion.save
-      redirect_to @idea
+      redirect_to idea_path(@idea, anchor: "#{@suggestion.id}")
     end
   end
 
