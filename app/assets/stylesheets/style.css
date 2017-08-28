@@ -12,6 +12,10 @@ a:link {
   color: black;
 }
 
+#submit-idea-container {
+  width: 50%;
+}
+
 #tagline {
   font-family: 'Lobster Two', cursive;
   font-size: 25px;
@@ -47,8 +51,7 @@ a:link {
   word-wrap: break-word;
 }
 
-#idea-title,
-#idea-summary {
+.idea-field {
   width: 60%;
 }
 
@@ -247,7 +250,7 @@ div.nav.navbar-nav.navbar-right.container.borderXwidth{
 }
 
 .text-divider:before{
-  content: " "; 
-  display: block; 
-  border-top: 1px solid #e3e3e3; 
+  content: " ";
+  display: block;
+  border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #f7f7f7;}
