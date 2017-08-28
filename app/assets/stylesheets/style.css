@@ -7,7 +7,7 @@ a:link {
   text-decoration: underline;
 }
 
-ul li{
+.team {
   font-family: 'Maven Pro', sans-serif;
   color: black;
   font-size: 1.3em;
