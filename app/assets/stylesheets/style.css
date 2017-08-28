@@ -12,6 +12,10 @@ a:link {
   color: black;
 }
 
+#submit-idea-container {
+  width: 50%;
+}
+
 #tagline {
   font-family: 'Lobster Two', cursive;
   font-size: 25px;
@@ -45,11 +49,6 @@ a:link {
 #suggestion-box {
   width: 60%;
   word-wrap: break-word;
-}
-
-#idea-title,
-#idea-summary {
-  width: 60%;
 }
 
 #idea-summary {
@@ -93,6 +92,15 @@ a:link {
   margin-top: 5px;
 }
 
+#idea-search {
+  width: 50%;
+}
+
+#idea-search input {
+  width: 80%;
+  display: inline-block;
+}
+
 .user-content {
   width: 50%;
   word-wrap: break-word;
@@ -121,6 +129,10 @@ a:link {
 
 .btn-margin {
   margin-top: 5px;
+}
+
+.idea-field {
+  width: 60%;
 }
 
 /* Checkbox Style */
@@ -247,7 +259,7 @@ div.nav.navbar-nav.navbar-right.container.borderXwidth{
 }
 
 .text-divider:before{
-  content: " "; 
-  display: block; 
-  border-top: 1px solid #e3e3e3; 
+  content: " ";
+  display: block;
+  border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #f7f7f7;}
