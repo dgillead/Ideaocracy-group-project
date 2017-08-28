@@ -16,6 +16,5 @@ RSpec.feature 'share idea', :type => :feature do
       expect(page).to have_content 'Home'
       expect(page).to have_content 'About'
       expect(page).to have_content 'Share idea'
-      expect(page).to have_content 'Account Setting'
     end
 end

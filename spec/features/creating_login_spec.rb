@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'login', :type => :feature do 
+RSpec.feature 'login', :type => :feature do
   describe "the signin process"
     before :each do
       User.create(email: 'user@example.com', password: 'password')
@@ -17,7 +17,5 @@ RSpec.feature 'login', :type => :feature do
       expect(page).to have_link 'Home'
       expect(page).to have_link 'Register'
       expect(page).to have_content 'Ideaocracy'
-      expect(page).to have_link 'Setting'
     end
 end
-    
