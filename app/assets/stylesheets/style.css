@@ -228,7 +228,6 @@ div.borderXwidth a:hover:before, div.borderXwidth a:hover:after
 
 div.container
 {
-    font-family: Raleway;
     margin: 0 auto;
     padding: 1em 3em;
     text-align: center;
@@ -238,7 +237,7 @@ div.container a
 {
     color: #FFF;
     text-decoration: none;
-    font: 20px Raleway;
+    font: 20px;
     margin: 0px 10px;
     padding: 10px 10px;
     position: relative;
@@ -248,6 +247,8 @@ div.container a
 
 div.nav.navbar-nav.navbar-right.container.borderXwidth{
   display: inline-block;
+  margin-right: 0px;
+  padding-right: 0px;
   width: 500px;
 }
 
