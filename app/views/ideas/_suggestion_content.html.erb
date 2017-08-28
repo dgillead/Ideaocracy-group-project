@@ -16,7 +16,7 @@
       </span>
       <br>
       <br>
-    <span><%= suggestion.body %> </span>
+    <span id="<%= suggestion.id %>"><%= suggestion.body %> </span>
     <% if suggestion.user_id == @user_id %>
     <div class="collapse" id="edit-suggestion<%= suggestion.id %><%= index %>" aria-hidden="false">
       <%= render 'edit_suggestion', { suggestion: suggestion } %>
@@ -25,4 +25,3 @@
       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, suggestion, data: { confirm: 'Are you sure?' }, method: :delete %></p>
       <% end %>
   </div>
-
