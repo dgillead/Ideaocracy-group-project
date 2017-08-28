@@ -1,9 +1,8 @@
 require 'elasticsearch/model'
 class Idea < ApplicationRecord
-  belongs_to :user
-  has_many :suggestions
-
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  belongs_to :user
+  has_many :suggestions
 end
-  Idea.import
+Idea.import force: true

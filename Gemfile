@@ -10,7 +10,7 @@ gem 'social-share-button'
 gem 'rails', '~> 5.1.3'
 gem 'ruby-trello'
 
-gem 'elasticsearch-model'
+gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '5.x'
 gem 'elasticsearch-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
