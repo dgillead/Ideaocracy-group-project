@@ -1,21 +1,29 @@
 <%= form_for (idea) do |f| %>
 
-  <div>
-    <div class="field text-center">
+  <div id="submit-idea-container" class="center-block text-center">
+
+    <div class="field">
       <%= f.label :title %><br />
-      <%= f.text_field :title, required: 'required', id: 'idea-title' %>
+      <%= f.text_field :title, required: 'required', class: 'idea-field' %>
     </div>
 
-    <div class="field text-center">
+    <br>
+
+    <div class="field">
+      <%= f.label :tags %><br>
+      <%= f.text_field :tags, class: 'idea-field' %>
+    </div>
+
+    <br>
+
+    <div class="field">
       <%= f.label :summary %><br />
-      <%= f.text_area :summary, required: 'required', id: 'idea-summary' %>
+      <%= f.text_area :summary, required: 'required', class: 'idea-field', rows: 15 %>
     </div>
 
-    <div class="actions text-center">
-     <p>
-       <%= f.submit "Submit", class: "btn btn-primary" %>
-       <%= link_to 'Cancel', @idea, method: :get %>
-     </p>
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= link_to 'Cancel', @idea, method: :get %>
     </div>
   </div>
 

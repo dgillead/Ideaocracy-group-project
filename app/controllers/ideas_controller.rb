@@ -92,6 +92,10 @@ class IdeasController < HomeController
       redirect_to @idea
   end
 
+  def search_tags
+    @ideas = Idea.where("tags like ?", "%#{params[:q]}%")
+  end
+
   private
 
   def authenticate_current_user
@@ -99,7 +103,7 @@ class IdeasController < HomeController
   end
 
   def idea_params
-    params.require(:idea).permit(:title, :summary)
+    params.require(:idea).permit(:title, :summary, :tags)
   end
 
   def find_idea

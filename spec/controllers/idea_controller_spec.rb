@@ -13,9 +13,46 @@ RSpec.describe IdeasController, type: :controller do
 
   let!(:valid_idea_attributes) { { title: 'Test idea title', summary: 'Test idea summary' } }
 
-  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
+  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', tags: 'idea1, hello, i am an idea, test me, both', user_id: user.id) }
 
-  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user2.id) }
+  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', tags: 'idea2, goodbye, i am an another idea, test me too, both', user_id: user2.id) }
+
+  describe 'GET #search' do
+    it 'returns ideas whose tags match the search params (idea1)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'idea1' }
+
+      expect(response.body).to include('Idea1 title')
+      expect(response.body).to_not include('Idea2 title')
+    end
+
+    it 'returns ideas whos tags match the search params (idea2)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'goodbye' }
+
+      expect(response.body).to include('Idea2 title')
+      expect(response.body).to_not include('Idea1 title')
+    end
+
+    it 'returns ideas whose tags match the search params (both)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'both' }
+
+      expect(response.body).to include('Idea2 title')
+      expect(response.body).to include('Idea1 title')
+    end
+
+    it 'lets the user know if the search returns no results' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'neither'}
+
+      expect(response.body).to include('No ideas found')
+    end
+  end
 
   describe 'GET #new' do
     it 'creates a new idea and assigns it to @idea' do
