@@ -4,3 +4,4 @@
 #   http_host: 'example.org',
 #   https: false
 # )
+Idea.__elasticsearch__.client.cluster.health
