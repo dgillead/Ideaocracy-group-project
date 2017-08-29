@@ -13,9 +13,46 @@ RSpec.describe IdeasController, type: :controller do
 
   let!(:valid_idea_attributes) { { title: 'Test idea title', summary: 'Test idea summary' } }
 
-  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', user_id: user.id) }
+  let!(:idea1) { Idea.create!(title: 'Idea1 title', summary: 'Idea1 summary', tags: 'idea1, hello, i am an idea, test me, both', user_id: user.id) }
 
-  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', user_id: user2.id) }
+  let!(:idea2) { Idea.create!(title: 'Idea2 title', summary: 'Idea2 summary', tags: 'idea2, goodbye, i am an another idea, test me too, both', user_id: user2.id) }
+
+  describe 'GET #search' do
+    it 'returns ideas whose tags match the search params (idea1)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'idea1' }
+
+      expect(response.body).to include('Idea1 title')
+      expect(response.body).to_not include('Idea2 title')
+    end
+
+    it 'returns ideas whos tags match the search params (idea2)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'goodbye' }
+
+      expect(response.body).to include('Idea2 title')
+      expect(response.body).to_not include('Idea1 title')
+    end
+
+    it 'returns ideas whose tags match the search params (both)' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'both' }
+
+      expect(response.body).to include('Idea2 title')
+      expect(response.body).to include('Idea1 title')
+    end
+
+    it 'lets the user know if the search returns no results' do
+      sign_in(user)
+
+      get :search_tags, params: { q: 'neither'}
+
+      expect(response.body).to include('No ideas found')
+    end
+  end
 
   describe 'GET #new' do
     it 'creates a new idea and assigns it to @idea' do
@@ -208,6 +245,114 @@ RSpec.describe IdeasController, type: :controller do
       delete :destroy, params: { id: -1 }
 
       expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+  end
+
+  describe 'GET #new_collaborator' do
+    it 'add the user to collaborator list when user sign in' do
+      sign_in(user)
+
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(1)
+      expect(response.code).to eq('302')
+    end
+
+    it 'will not add the user to collaborator list when not sign in' do
+
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(0)
+    end
+
+    it 'will not add the user to collaborator list when user already on the list' do
+      sign_in(user)
+
+      get :new_collaborator, params: {id: idea1.id}
+      get :new_collaborator, params: {id: idea1.id}
+      idea1.reload
+
+      expect(idea1.collaborators.count).to eq(1)
+    end
+  end
+
+  describe 'GET #delete_collaborator' do
+    let(:idea3) { Idea.create!(title: 'Idea3 title', summary: 'Idea3 summary', user_id: user.id, collaborators: [user.id]) }
+    it 'will not remove the user to collaborator list when not sign in' do
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(1)
+    end
+
+    it 'remove the user to collaborator list when user sign in' do
+      sign_in(user)
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(0)
+      expect(response.code).to eq('302')
+    end
+
+
+    it 'will not add the user to collaborator list when user not on the list' do
+      sign_in(user2)
+
+      get :delete_collaborator, params: {id: idea3.id}
+      idea3.reload
+
+      expect(idea3.collaborators.count).to eq(1)
+    end
+  end
+
+  describe 'PATCH #love_idea' do
+    it 'increase the love count by 1' do
+      sign_in(user)
+
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(1)
+    end
+
+    it 'will decrease the love count by 1 if you alreay loved it' do
+      sign_in(user)
+
+      patch :love_idea, params: { id: idea1.id }
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(0)
+    end
+
+    it 'will not change the love count if you are not login' do
+      patch :love_idea, params: { id: idea1.id }
+      idea1.reload
+
+      expect(idea1.loves.count).to eq(0)
+    end
+
+    it 'add to uers love list' do
+      sign_in(user)
+
+      patch :love_idea, params: {id: idea1.id}
+      user.reload
+
+      expect(user.loves).to eq([idea1.id])
+    end
+
+    it 'removes from users love list' do
+      sign_in(user)
+
+      patch :love_idea, params: {id: idea1.id}
+      patch :love_idea, params: {id: idea1.id}
+      user.reload
+
+      expect(user.loves).to eq([])
     end
   end
 

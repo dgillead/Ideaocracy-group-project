@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://trello.com/1/client.js?key=<%= Rails.application.secrets.trello_api_key %>"></script>
+    <script src="https://trello.com/1/client.js?key=<%= ENV['trello_key'] %>"></script>
   </head>
 
   <body>
@@ -17,34 +17,40 @@
         <!-- Sidebar Holder -->
       <nav id="sidebar" class="active">
         <div class="sidebar-header">
-            <h3>Ideaocracy</h3>
+            <a href="/"><h3>Ideaocracy</h3></a>
         </div>
         <ul class="list-unstyled components">
           <li class="active">
-            <a href="/ideas">Home</a>
+            <a href="/ideas">Ideas</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="/about">About</a>
             <% if current_user %>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Your Post History</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">History</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
 
-              <%= link_to show_user_ideas_path do%>
-               Your ideas <%= content_tag :span,"#{current_user.ideas.count}", class:"badge" %>
-              <% end %>
+                <%= link_to show_user_ideas_path do%>
+                 Your ideas <%= content_tag :span,"#{current_user.ideas.count}", class:"badge" %>
+                <% end %>
 
-              <%= link_to show_user_suggestions_path do%>
-               Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
-              <% end %>
+                <%= link_to show_user_suggestions_path do%>
+                 Your suggestions <%= content_tag :span,"#{Suggestion.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <% end %>
 
-              <%= link_to show_user_comments_path do%>
-               Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <%= link_to show_user_comments_path do%>
+                 Your comments <%= content_tag :span,"#{Comment.where("user_id = ?", current_user.id).count}", class:"badge" %>
+                <% end %>
+
+                <%= link_to show_user_loves_path do%>
+                 Ideas you love <%= content_tag :span,"#{current_user.loves.count}", class:"badge" %>
               <% end %>
             </ul>
             <% end %>
           </li>
           <li>
-            <%= link_to 'Account Settings',  edit_user_registration_path %>
+            <% if current_user %>
+              <%= link_to 'Account Settings',  edit_user_registration_path %>
+            <% end %>
           </li>
         </ul>
         <div class="text-center">
@@ -67,16 +73,16 @@
               </button>
             </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/ideas">Home</a></li>
-              <li><a href="/ideas/new">Share idea</a></li>
+            <div class="nav navbar-nav navbar-right container borderXwidth">
+              <a href="/ideas">Ideas</a>
+              <a href="/ideas/new">Post idea</a>
             <% if current_user %>
-              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             <% else %>
-              <li> <%= link_to 'Register', new_user_registration_path %> </li>
-              <li> <%= link_to 'Login', new_user_session_path %> </li>
+               <%= link_to 'Register', new_user_registration_path %>
+               <%= link_to 'Login', new_user_session_path %>
             <% end %>
-            </ul>
+            </div>
           </div>
         </div>
       </nav>
@@ -132,12 +138,12 @@
 // fade out for alerts
   setTimeout(function(){
     $('.alert').fadeOut();
-   }, 5000);
+  }, 10000);
 
 // love it button
 $('.btn-counter').on('click', function(event, count) {
   event.preventDefault();
-  
+
 
   var $this = $(this),
       count = $this.attr('data-count'),
@@ -148,7 +154,7 @@ $('.btn-counter').on('click', function(event, count) {
   jQuery.ajax({url: `/love_idea?id=${ideaId}`, type: 'patch'})
   $.fn.noop = $.noop;
   $this.attr('data-count', ! active || multiple ? ++count : --count  )[multiple ? 'noop' : 'toggleClass']('active');
-  
+
 });
    </script>
 </html>

@@ -13,9 +13,8 @@ RSpec.feature 'share idea', :type => :feature do
         fill_in 'Summary', with: 'It is a device that helps elderly when they fall and they cannot get up.'
       end
 
-      expect(page).to have_content 'Home'
+      expect(page).to have_content 'Ideas'
       expect(page).to have_content 'About'
-      expect(page).to have_content 'Share idea'
-      expect(page).to have_content 'Account Setting'
+      expect(page).to have_content 'Post idea'
     end
 end

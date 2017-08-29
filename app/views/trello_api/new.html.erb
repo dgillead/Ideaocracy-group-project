@@ -9,7 +9,7 @@
       <%= link_to 'Authorize Trello', "javascript:authenticateTrello()" %>
     <% end %>
   </div>
-  <div class="container">
+  <div id="trello-container" class="center-block">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
         <div class="panel panel-default">
@@ -17,7 +17,7 @@
               <ul class="list-group">
                 <% @idea.suggestions.all.each_with_index do |suggestion, index| %>
                 <li class="list-group-item">
-                  <div class="list-text"><%= suggestion.body %></div>
+                  <div class="list-text"><%= suggestion.body %><span class="pull-right">Points: <%= suggestion.votes %></span></div>
                   <div class="material-switch pull-right">
                     <input id="<%= index %>" name="suggestions[]" type="checkbox" value="<%= suggestion.body %>"></input>
                     <label for="<%= index %>" class="label-success"></label>

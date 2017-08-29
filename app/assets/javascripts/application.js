@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require social-share-button
 //= require bootstrap-sprockets
 //= require local-time
 //= require_tree .
@@ -21,7 +22,7 @@
 function authenticateTrello() {
   localStorage.removeItem('trello_token');
   Trello.authorize({
-    name: "YourApplication",
+    name: "Ideaocracy",
     type: "popup",
     interactive: true,
     expiration: "never",
