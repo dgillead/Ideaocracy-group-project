@@ -8,18 +8,10 @@ class IdeasController < HomeController
   end
 
   def index
-    if Idea.count <= 30
-      if params[:sort] == 'loves'
-        @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
-      else
-        @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
-      end
+    if params[:sort] == 'loves'
+      @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
     else
-      if params[:sort] == 'loves'
-        @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
-      else
-        @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
-      end
+      @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
     end
   end
 

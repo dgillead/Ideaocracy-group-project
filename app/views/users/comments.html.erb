@@ -1,11 +1,6 @@
 <div class="user-content center-block">
   <h1 class="text-center">Your Comments</h1>
   <div id="usercomment-body">
-    <div class="digg_pagination">
-      <% if @comments.count > 30 %>
-        <%= will_paginate @comments, :container => false %>
-      <% end %> 
-    </div>
     <% if @comments.any? %>
       <% @comments.each do |comment| %>
          <p><span class="pull-left"><%= local_time(comment.created_at) %></span><br><br><%= link_to comment.suggestion.idea.title, comment.suggestion.idea %></p>
@@ -18,7 +13,7 @@
     <div class="digg_pagination">
       <% if @comments.count > 30 %>
         <%= will_paginate @comments, :container => false %>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>

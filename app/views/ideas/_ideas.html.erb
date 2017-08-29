@@ -1,24 +1,14 @@
 <div id="table-body">
   <table class="table table-hover">
-  <div>
-    <div class="digg_pagination">
-      <% if @ideas.count > 30 %>
-        <%= will_paginate ideas, :container => false %>
-      <% end %>
-    </div>
 
-
-
-  <div class="dropdown pull-right">
+  <span class="dropdown pull-right">
     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort by
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><a href="/ideas?sort=love">loves</a></li>
       <li><a href="/ideas">date</a></li>
     </ul>
-  </div>
-    
-  </div>
+  </span>
 
     <% if ideas.any? %>
       <% ideas.each_with_index do |idea, index| %>
