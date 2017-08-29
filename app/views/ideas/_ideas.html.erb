@@ -4,7 +4,17 @@
     <% if @ideas.count > 30 %>
       <%= will_paginate ideas, :container => false %>
     <% end %>
+<div id="sort-link"><%= link_to 'sort by love', ideas_path(sort: 'loves') %></div>
 
+<div class="btn-group">
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort by
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Add self to list' %></li>
+    <li><%= link_to 'Remove self from list' %></li>
+  </ul>
+</div>
 
   </div>
     <% if ideas.any? %>
