@@ -6,6 +6,7 @@ class CreateIdeas < ActiveRecord::Migration[5.1]
       t.text :summary, null: false
       t.text :tags
       t.integer :loves, array: true, default: []
+      t.integer :loves_count
       t.integer :collaborators, array: true, default: []
       t.timestamps
     end

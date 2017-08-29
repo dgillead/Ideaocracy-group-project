@@ -5,8 +5,8 @@
     <input type="text" name="q" class="form-control" placeholder="Search Ideas...">
     <button type="submit" class="btn btn-default btn-primary">Search</button>
   </form>
+<div class="pull-right"><%= link_to 'sort by love' %></div> 
 </div>
-
 <br>
 
 <%= render 'ideas', { ideas: @ideas } %>

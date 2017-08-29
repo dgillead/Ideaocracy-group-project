@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170819230543) do
     t.text "summary", null: false
     t.text "tags"
     t.integer "loves", default: [], array: true
+    t.integer "loves_count"
     t.integer "collaborators", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

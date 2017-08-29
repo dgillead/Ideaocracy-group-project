@@ -1,4 +1,4 @@
-5.times do
+10.times do
   User.create!(email: Faker::Internet.email, password: '123456', username: Faker::Name.last_name, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
 end
 
@@ -8,8 +8,8 @@ users = User.all
 
 users.each do |user|
   10.times do
-    user.ideas.create!(title: Faker::Hipster.sentence, summary: "#{Faker::Hipster.paragraphs[0]}#{Faker::Hipster.paragraphs[0]}", collaborators: [1,2,3,4,5], loves: [1,2,3,4,5])
-
+    loves_array = (1..10).to_a.sort{ rand() - 0.5 }[0..rand(3..11)]
+    user.ideas.create!(title: Faker::Hipster.sentence, summary: "#{Faker::Hipster.paragraphs[0]}#{Faker::Hipster.paragraphs[0]}", collaborators: [1,2,3,4,5], loves: loves_array, loves_count: loves_array.count)
   end
 end
 
