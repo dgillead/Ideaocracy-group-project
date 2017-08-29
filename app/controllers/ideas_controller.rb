@@ -8,16 +8,19 @@ class IdeasController < HomeController
   end
 
   def index
-    if params[:sort] = 'loves'
-      @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
-    elsif params[:sort] = 'date'
-      @ideas = Idea.all.order(create_at: :desc).paginate(:page => params[:page])
+    if Idea.count <= 30
+      if params[:sort] == 'loves'
+        @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
+      else
+        @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
+      end
+    else
+      if params[:sort] == 'loves'
+        @ideas = Idea.all.order(loves_count: :desc).paginate(:page => params[:page])
+      else
+        @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
+      end
     end
-    # if Idea.count <= 30
-    #   @ideas = Idea.all.order(created_at: :desc)
-    # else
-    #    @ideas = Idea.all.order(created_at: :desc).paginate(:page => params[:page])
-    # end
   end
 
   def create

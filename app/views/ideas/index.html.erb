@@ -5,7 +5,21 @@
     <input type="text" name="q" class="form-control" placeholder="Search Ideas...">
     <button type="submit" class="btn btn-default btn-primary">Search</button>
   </form>
-<div class="pull-right"><%= link_to 'sort by love' %></div> 
+<div class="pull-right"><%= link_to 'sort by love', ideas_path(sort: 'loves') %></div> 
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="/ideas?sort='loves'" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/ideas?sort=loves">loves</a>
+    <a class="dropdown-item" href="/ideas">created date</a>
+  </div>
+</div>
+
+
+
 </div>
 <br>
 
