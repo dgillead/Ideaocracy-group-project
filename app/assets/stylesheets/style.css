@@ -281,6 +281,11 @@ div.nav.navbar-nav.navbar-right.container.borderXwidth{
   color: grey;
 }
 
+.about-images {
+  width: 250px;
+  height: 250px;
+}
+
 .text-divider:before{
   content: " ";
   display: block;
