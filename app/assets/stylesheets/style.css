@@ -227,6 +227,11 @@ a:link {
   margin: auto;
 }
 
+a.sort-list {
+  display: inline-block;
+}
+
+/* navbar link style*/
 div.borderXwidth a:before, div.borderXwidth a:after
 {
     position: absolute;

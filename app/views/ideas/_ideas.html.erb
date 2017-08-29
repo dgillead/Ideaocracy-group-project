@@ -1,22 +1,25 @@
 <div id="table-body">
   <table class="table table-hover">
-  <div class="digg_pagination">
-    <% if @ideas.count > 30 %>
-      <%= will_paginate ideas, :container => false %>
-    <% end %>
-<div id="sort-link"><%= link_to 'sort by love', ideas_path(sort: 'loves') %></div>
+  <div>
+    <div class="digg_pagination">
+      <% if @ideas.count > 30 %>
+        <%= will_paginate ideas, :container => false %>
+      <% end %>
+    </div>
 
-<div class="btn-group">
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Sort by
-  </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'Add self to list' %></li>
-    <li><%= link_to 'Remove self from list' %></li>
-  </ul>
-</div>
 
+
+  <div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort by
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="/ideas?sort=love">loves</a></li>
+      <li><a href="/ideas">date</a></li>
+    </ul>
   </div>
+    
+  </div>
+
     <% if ideas.any? %>
       <% ideas.each_with_index do |idea, index| %>
         <tr>
