@@ -2,7 +2,7 @@
   <div class="jumbotron" id="intro-container">
     <h2 class="text-center" id="about-us">Welcome to Idea<em>Ocracy</em>!</h2>
     <hr />
-    <h3 class="text-center" id="about-text"> The site where users can post their great ideas, make idea suggestions, offer comments, choose to collaborate on further development of those ideas, and share these ideas on <em>Google+</em> in addition to email, Twitter, or LinkedIn. Check out the collection of fantastic ideas shared by our community here:</h3>
+    <h3 class="text-center" id="about-text"> The site where users can post their great ideas, make idea suggestions, offer comments, choose to collaborate on further development of those ideas, and share these ideas on Google+, through email, Twitter, or LinkedIn. Check out the collection of fantastic ideas shared by our community here:</h3>
     <div class="text-center">
       <%= button_to 'View Ideas', ideas_path, method: :get, class: "btn btn-success intro-buttons" %>
     </div>
@@ -13,16 +13,41 @@
     </div>
     <h2 class="text-center" id="about-text">About our team:
     </h2>
-    <h3 class="text-center" id="about-text">We are a group of software engineers dedicated to helping society through the open dissemination of innovative ideas. 
+    <h3 class="text-center" id="about-text">We are a group of software engineers dedicated to helping society through the open dissemination of innovative ideas.
     </h3>
-    <ul class="team">
-      <li>Jin&nbspCheng</li>
-      <li>Darnell&nbspGillead</li>
-      <li>Robert&nbspGonzalez</li>
-      <li>Arthur&nbspMiguel</li>
-      <li>James&nbspSmith</li>
-    </ul>
-  </div>
+    <div id="team-container" class="text-center">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          Jin&nbspCheng
+          <br>
+          <img class="about-images" src="/images/jin.jpeg" />
+        </div>
+        <div class="col-xs-12 col-md-4">
+          Darnell&nbspGillead
+          <br>
+          <img class="about-images" src="/images/darnell.jpeg" />
+        </div>
+        <div class="col-xs-12 col-md-4">
+          Robert&nbspGonzalez
+          <br>
+          <img class="about-images" src="/images/robert.jpeg" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          Arthur&nbspMiguel
+          <br>
+          <img class="about-images" src="/images/arthur.jpeg" />
+        </div>
+        <div class="col-xs-12 col-md-6">
+          James&nbspSmith
+          <br>
+          <img class="about-images" src="/images/james.jpeg" />
+        </div>
+      </div>
+    </div>
+    </div>
 
   <%= social_share_button_tag("Have an idea? Post it here!") %>
 </body>
