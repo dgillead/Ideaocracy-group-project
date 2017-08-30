@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170819230543) do
     t.integer "votes", default: 1
     t.integer "up_votes", default: [], array: true
     t.integer "down_votes", default: [], array: true
-    t.text "approved", default: "false"
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

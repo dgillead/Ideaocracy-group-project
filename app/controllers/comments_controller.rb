@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :authenticate_user!
-  before_action :find_suggestion, only: [:create]
+  before_action :find_suggestion, only: [:create, :update]
   before_action :find_idea, only: [:create]
   before_action :find_comment, only: [:edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(update_comment_params)
-      redirect_to idea_path(@comment.suggestion.idea.id)
+      redirect_to idea_path(@comment.suggestion.idea.id, anchor: "#{@comment.suggestion.id}")
     end
   end
 
