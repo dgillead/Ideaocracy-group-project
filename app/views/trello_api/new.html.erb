@@ -15,7 +15,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Suggestions</div>
               <ul class="list-group">
-                <% @idea.suggestions.all.each_with_index do |suggestion, index| %>
+                <% @idea.suggestions.all.order("votes DESC").each_with_index do |suggestion, index| %>
                 <li class="list-group-item">
                   <div class="list-text"><%= suggestion.body %><span class="pull-right">Points: <%= suggestion.votes %></span></div>
                   <div class="material-switch pull-right">
