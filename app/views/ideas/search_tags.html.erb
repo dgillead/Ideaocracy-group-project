@@ -1,1 +1,9 @@
+<div id="idea-search" class="center-block">
+  <form role="search" action="/search">
+    <input type="text" name="q" class="form-control" placeholder="Search Ideas..." required>
+    <button type="submit" class="btn btn-default btn-primary">Search</button>
+  </form>
+</div>
+<br>
+
 <%= render 'ideas', { ideas: @ideas } %>
