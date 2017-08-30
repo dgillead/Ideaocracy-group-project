@@ -2,7 +2,7 @@
   <form action="/comments" method="post">
     <div class="form-group">
       <label for="Textarea">Leave a comment</label>
-      <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
+      <textarea class="form-control" id="Textarea" rows="3" name="body" required></textarea>
       <input type="hidden" name="suggestion_id" value="<%= suggestion.id %>">
       <input type="hidden" name="idea_id" value="<%= @idea.id %>">
       <%= button_to 'Post your comment', new_comment_path, class:"btn btn-primary btn-margin" %>
