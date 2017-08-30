@@ -16,7 +16,7 @@ class SuggestionsController < ApplicationController
 
   def update
     if @suggestion.update_attributes(update_suggestion_params)
-      redirect_to idea_path(@suggestion.idea.id)
+      redirect_to idea_path(@suggestion.idea.id, anchor: "#{@suggestion.id}")
     end
   end
 

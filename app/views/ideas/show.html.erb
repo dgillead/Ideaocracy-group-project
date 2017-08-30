@@ -19,7 +19,7 @@
       <% if @idea.collaborators.any? %>
         <% @idea.collaborators.each do |collaborator| %>
           <% collaborator = User.find(collaborator) %>
-          <li><%= collaborator.username%></li>
+          <li><p id="collaborator-list"><%= collaborator.username%></p> </li>
         <% end %>
       <% end %>
     </ul>

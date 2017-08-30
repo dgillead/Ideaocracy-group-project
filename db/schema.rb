@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170819230543) do
     t.text "summary", null: false
     t.text "tags"
     t.integer "loves", default: [], array: true
+    t.integer "loves_count", default: 0
     t.integer "collaborators", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170819230543) do
     t.integer "votes", default: 1
     t.integer "up_votes", default: [], array: true
     t.integer "down_votes", default: [], array: true
-    t.text "approved", default: "false"
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
