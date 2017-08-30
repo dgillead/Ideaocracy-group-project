@@ -17,7 +17,9 @@ class IdeasController < HomeController
 
   def create
     @idea = current_user.ideas.new(idea_params)
-    @idea['tags'] = @idea['tags'].downcase
+    if @idea['tags']
+      @idea['tags'] = @idea['tags'].downcase
+    end
     if @idea.save
       redirect_to @idea
     else
