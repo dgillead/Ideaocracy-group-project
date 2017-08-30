@@ -17,6 +17,7 @@ class IdeasController < HomeController
 
   def create
     @idea = current_user.ideas.new(idea_params)
+    @idea['tags'] = @idea['tags'].downcase
     if @idea.save
       redirect_to @idea
     else
@@ -97,7 +98,7 @@ class IdeasController < HomeController
   end
 
   def search_tags
-    @ideas = Idea.where("tags like ?", "%#{params[:q]}%")
+    @ideas = Idea.where("tags like ?", "%#{params[:q].downcase}%")
   end
 
   private
