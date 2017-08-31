@@ -41,6 +41,10 @@ a:link {
   color: black;
 }
 
+#trello-suggestion-body {
+  width: 50%;
+}
+
 #background {
   background-image: url('/images/lightbulb.jpg');
   background-repeat: no-repeat;
@@ -160,7 +164,7 @@ a:link {
  .social {
      -webkit-transform: scale(0.8);
      /* Browser Variations: */
-     
+
      -moz-transform: scale(0.8);
      -o-transform: scale(0.8);
      -webkit-transition-duration: 0.5s;

@@ -17,7 +17,7 @@
       <span id="<%= comment.suggestion.id %>" class="text-left creator-title"><%= comment.user.username %> </span>
       <br>
       <br>
-      <p><%= comment.body %></p>
+      <span><%= comment.body %></span>
       <div>
         <% if comment.user_id == @user_id %>
         <div class="collapse" id="edit-comment<%= comment.id %><%= index %>" aria-hidden="false">
