@@ -1,5 +1,5 @@
 class IdeasController < HomeController
-  before_action :authenticate_user!, except: [:index, :show, :new_collaborator, :delete_collaborator]
+  before_action :authenticate_user!, except: [:index, :show, :new_collaborator, :delete_collaborator, :search_tags]
   before_action :find_idea, only: [:show, :edit, :update, :destroy, :new_collaborator, :love_idea, :delete_collaborator]
   before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
