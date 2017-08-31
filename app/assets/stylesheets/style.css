@@ -318,6 +318,8 @@ div.nav.navbar-nav.navbar-right.container.borderXwidth{
   margin-right: 0px;
   padding-right: 0px;
   width: 500px;
+  font-size: 120%;
+  font-weight: 5px;
 }
 
 .text-divider {
