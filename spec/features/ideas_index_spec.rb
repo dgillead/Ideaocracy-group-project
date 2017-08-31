@@ -5,7 +5,7 @@ RSpec.feature 'ideas', type: :feature do
     
     visit '/ideas'
 
-    expect(page).to have_content 'Nothing yet'
+    expect(page).to have_content 'No ideas found'
     expect(page).to_not have_content 'Discuss Idea'
   end
 
@@ -18,5 +18,6 @@ RSpec.feature 'ideas', type: :feature do
 
     expect(page).to have_content 'Have a good suggestion?'
   end
+
 end
 

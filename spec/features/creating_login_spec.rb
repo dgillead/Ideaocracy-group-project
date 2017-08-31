@@ -18,4 +18,6 @@ RSpec.feature 'login', :type => :feature do
       expect(page).to have_link 'Register'
       expect(page).to have_content 'Ideaocracy'
     end
+
+
 end
