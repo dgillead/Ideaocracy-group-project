@@ -21,6 +21,10 @@ a:link {
   color: black;
 }
 
+#footer-text {
+  margin-right: 10px;
+}
+
 #about-text {
   font-family: Sans-serif;
   color: black;
