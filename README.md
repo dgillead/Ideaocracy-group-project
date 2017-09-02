@@ -20,4 +20,9 @@ $ bundle install
 ```
 $ bundle exec rails db:create
 $ bundle exec rails db:migrate
+$ bundle exec rails db:seed (optional)
 ```
+
+In order for the creation of the Trello board to work, you'll need to get an API key from Trello and store it in an environment variable.
+
+https://developers.trello.com/
