@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20170819230543) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "suggestion_id"
+    t.integer "user_id", null: false
+    t.integer "suggestion_id", null: false
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20170819230543) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.integer "idea_id"
-    t.integer "user_id"
+    t.integer "idea_id", null: false
+    t.integer "user_id", null: false
     t.integer "votes", default: 1
     t.integer "up_votes", default: [], array: true
     t.integer "down_votes", default: [], array: true
