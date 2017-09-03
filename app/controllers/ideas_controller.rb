@@ -49,6 +49,11 @@ class IdeasController < HomeController
   end
 
   def destroy
+    User.find_each do |user|
+      user.loves.delete(@idea.id)
+      user.save
+    end
+
     @idea.destroy
     redirect_to ideas_path
   end
