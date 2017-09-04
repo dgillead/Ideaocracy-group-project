@@ -2,7 +2,7 @@
 
 [ ![Codeship Status for dgillead/Ideaocracy-group-project](https://app.codeship.com/projects/a23519b0-6807-0135-ef0f-0ed54c158a94/status?branch=master)](https://app.codeship.com/projects/241165)
 
-Ideaocracy is an app which allows users to collaborate and flesh out ideas. Users can read ideas and the discussions surrounding those ideas without signing in, or they can create an account and sign in to take part in the discussion. Once a user signs in they can post ideas they would like to get feedback on, or give others feedback on ideas by posting suggestions and comments. Users can also export their ideas to Trello. Ideaocracy was built using Ruby on Rails, Javascript, Bootstrap, and utilizes the Trello API.
+Ideaocracy is an app which allows users to collaborate and flesh out ideas. Users can read ideas and the discussions surrounding those ideas without signing in, or they can create an account and sign in to take part in the discussion. Once a user signs in they can post ideas they would like to get feedback on, or give others feedback on ideas by posting suggestions and comments, or voting on ideas or suggestions. Users can also export their ideas to Trello. Ideaocracy was built using Ruby on Rails, Javascript, Bootstrap, and utilizes the Trello API.
 
 # Getting started on your local machine
 
